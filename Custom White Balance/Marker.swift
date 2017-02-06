@@ -23,7 +23,13 @@ class Marker: UIView, UIGestureRecognizerDelegate {
     }
     
     func setup() {        
-        let circlePath = UIBezierPath(arcCenter: CGPoint(x: 0, y: 0), radius: 60, startAngle: 0, endAngle: CGFloat(2.0 * M_PI), clockwise: true)
+        let circlePath = UIBezierPath(arcCenter: CGPoint(x: bounds.maxX / 2, y: bounds.maxY / 2), radius: 60, startAngle: 0, endAngle: CGFloat(2.0 * M_PI), clockwise: true)
+        
+        circlePath.move(to: CGPoint(x: circlePath.bounds.midX, y: circlePath.bounds.minY))
+        circlePath.addLine(to: CGPoint(x: circlePath.bounds.midX, y: circlePath.bounds.maxY))
+        
+        circlePath.move(to: CGPoint(x: circlePath.bounds.minX, y: circlePath.bounds.midY))
+        circlePath.addLine(to: CGPoint(x: circlePath.bounds.maxX, y: circlePath.bounds.midY))
         
         shapeLayer.path = circlePath.cgPath
         shapeLayer.strokeColor = UIColor.black.cgColor
