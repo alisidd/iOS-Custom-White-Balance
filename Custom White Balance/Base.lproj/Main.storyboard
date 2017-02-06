@@ -26,7 +26,7 @@
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1QC-V1-YTa" customClass="SelectButton" customModule="Custom_White_Balance" customModuleProvider="target">
                                 <rect key="frame" x="30" y="527" width="315" height="60"/>
-                                <color key="backgroundColor" red="0.65942258883248739" green="0.098643559779419313" blue="0.0056972684168522698" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.62606325601484447" blue="0.63197969543147203" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="Hqp-vT-hm8"/>
                                 </constraints>
@@ -36,11 +36,12 @@
                                 </state>
                                 <connections>
                                     <action selector="chooseImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iCa-l8-R5Y"/>
+                                    <segue destination="M86-06-EMQ" kind="show" identifier="Edit Image" id="zKG-xQ-7P1"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jfB-KP-zek" customClass="SelectButton" customModule="Custom_White_Balance" customModuleProvider="target">
                                 <rect key="frame" x="30" y="447" width="315" height="60"/>
-                                <color key="backgroundColor" red="0.65942258880000004" green="0.098643559780000001" blue="0.0056972684169999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.62606325601484447" blue="0.63197969543147203" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="zwA-c9-1c3"/>
                                 </constraints>
@@ -69,6 +70,61 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="972" y="37.331334332833585"/>
+        </scene>
+        <!--Image View Controller-->
+        <scene sceneID="VIk-iz-LHb">
+            <objects>
+                <viewController id="M86-06-EMQ" customClass="ImageViewController" customModule="Custom_White_Balance" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ArZ-t8-s5k"/>
+                        <viewControllerLayoutGuide type="bottom" id="Dbq-Wt-wze"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cE6-uQ-n8g">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Rww-uu-T7o">
+                                <rect key="frame" x="0.0" y="-1" width="374" height="668"/>
+                            </imageView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X9a-IA-Ppz">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <items>
+                                    <barButtonItem title="Add Marker" id="EQN-6C-kDV">
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <action selector="addMarker:" destination="M86-06-EMQ" id="WKY-WJ-MXn"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="115.5" style="plain" systemItem="fixedSpace" id="Uqv-aE-2mD"/>
+                                    <barButtonItem title="Add Ideal Marker" id="9o2-dd-7uI">
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <action selector="addIdealMarker:" destination="M86-06-EMQ" id="z0P-pR-n0F"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                                <color key="barTintColor" red="0.0" green="0.62606325600000001" blue="0.63197969539999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="X9a-IA-Ppz" firstAttribute="leading" secondItem="cE6-uQ-n8g" secondAttribute="leading" id="1rN-c3-hD9"/>
+                            <constraint firstItem="Rww-uu-T7o" firstAttribute="leading" secondItem="cE6-uQ-n8g" secondAttribute="leading" id="L6k-p5-scI"/>
+                            <constraint firstItem="Rww-uu-T7o" firstAttribute="centerY" secondItem="cE6-uQ-n8g" secondAttribute="centerY" id="OYD-Fh-rYJ"/>
+                            <constraint firstItem="Rww-uu-T7o" firstAttribute="centerX" secondItem="cE6-uQ-n8g" secondAttribute="centerX" id="fgW-Xi-Udn"/>
+                            <constraint firstItem="Dbq-Wt-wze" firstAttribute="top" secondItem="Rww-uu-T7o" secondAttribute="bottom" id="h37-bO-Avq"/>
+                            <constraint firstItem="Dbq-Wt-wze" firstAttribute="top" secondItem="X9a-IA-Ppz" secondAttribute="bottom" id="osx-8u-urc"/>
+                            <constraint firstAttribute="trailing" secondItem="X9a-IA-Ppz" secondAttribute="trailing" id="zDo-9Q-YM4"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="Rww-uu-T7o" id="hsn-x7-EPA"/>
+                        <outlet property="toolbar" destination="X9a-IA-Ppz" id="Uvm-VF-pzH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eui-aI-Zgt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1930" y="37"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ryb-AU-L6r">

@@ -46,15 +46,27 @@ class InitialViewController: UIViewController, UIImagePickerControllerDelegate, 
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             imageSelected = pickedImage
         }
-        
         dismiss(animated: true, completion: nil)
+        performSegue(withIdentifier: "Edit Image", sender: nil)
+    }
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if let _ = imageSelected {
+            return true
+        } else {
+            return false
+        }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "Edit Image" {
+            if let destinationVC = segue.destination as? ImageViewController {
+                if let unwrappedimage = imageSelected {
+                    destinationVC.imageSelected = unwrappedimage
+                }
+            }
+        }
     }
-
 
 }
 

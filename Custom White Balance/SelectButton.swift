@@ -11,8 +11,6 @@ import UIKit
 class SelectButton: UIButton {
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
-        layer.borderWidth = 1
-        layer.borderColor = UIColor(red: 168/255, green: 25/255, blue: 1/255, alpha: 1).cgColor
         layer.cornerRadius = 10
     }
 }
