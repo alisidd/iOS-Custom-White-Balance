@@ -13,6 +13,7 @@
 		4160D4171E47F70400AF2ED6 /* Custom_White_Balance.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4160D4151E47F70400AF2ED6 /* Custom_White_Balance.xcdatamodeld */; };
 		4160D4191E47F70400AF2ED6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4160D4181E47F70400AF2ED6 /* Assets.xcassets */; };
 		4160D41C1E47F70400AF2ED6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4160D41A1E47F70400AF2ED6 /* LaunchScreen.storyboard */; };
+		4160D4241E47FC7800AF2ED6 /* SelectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4160D4231E47FC7800AF2ED6 /* SelectButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		4160D4181E47F70400AF2ED6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4160D41B1E47F70400AF2ED6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4160D41D1E47F70400AF2ED6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4160D4231E47FC7800AF2ED6 /* SelectButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				4160D40E1E47F70400AF2ED6 /* AppDelegate.swift */,
 				4160D4101E47F70400AF2ED6 /* InitialViewController.swift */,
 				4160D4121E47F70400AF2ED6 /* Main.storyboard */,
+				4160D4231E47FC7800AF2ED6 /* SelectButton.swift */,
 				4160D4181E47F70400AF2ED6 /* Assets.xcassets */,
 				4160D41A1E47F70400AF2ED6 /* LaunchScreen.storyboard */,
 				4160D41D1E47F70400AF2ED6 /* Info.plist */,
@@ -141,6 +144,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4160D4171E47F70400AF2ED6 /* Custom_White_Balance.xcdatamodeld in Sources */,
+				4160D4241E47FC7800AF2ED6 /* SelectButton.swift in Sources */,
 				4160D4111E47F70400AF2ED6 /* InitialViewController.swift in Sources */,
 				4160D40F1E47F70400AF2ED6 /* AppDelegate.swift in Sources */,
 			);
@@ -304,6 +308,7 @@
 				4160D4221E47F70400AF2ED6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

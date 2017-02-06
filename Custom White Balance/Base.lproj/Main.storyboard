@@ -20,11 +20,39 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="Ogv-D2-N3i">
+                                <rect key="frame" x="0.0" y="0.0" width="374" height="666"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1QC-V1-YTa" customClass="SelectButton" customModule="Custom_White_Balance" customModuleProvider="target">
+                                <rect key="frame" x="30" y="527" width="315" height="60"/>
+                                <color key="backgroundColor" red="0.65942258883248739" green="0.098643559779419313" blue="0.0056972684168522698" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="Hqp-vT-hm8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="Choose Image">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="1QC-V1-YTa" secondAttribute="bottom" constant="80" id="RHV-Dk-zNg"/>
+                            <constraint firstItem="Ogv-D2-N3i" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="abd-F7-KHR"/>
+                            <constraint firstAttribute="trailing" secondItem="1QC-V1-YTa" secondAttribute="trailing" constant="30" id="acx-0y-lTm"/>
+                            <constraint firstItem="Ogv-D2-N3i" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="c8M-wO-cSo"/>
+                            <constraint firstItem="Ogv-D2-N3i" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="hoX-gm-bsa"/>
+                            <constraint firstItem="Ogv-D2-N3i" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="rQ0-TG-8AI"/>
+                            <constraint firstItem="1QC-V1-YTa" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="30" id="tNx-Hq-x7f"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
     </scenes>
+    <resources>
+        <image name="background" width="1080" height="1920"/>
+    </resources>
 </document>
