@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="fYb-k3-7Yv">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -34,22 +34,59 @@
                                 <state key="normal" title="Choose Image">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="chooseImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iCa-l8-R5Y"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jfB-KP-zek" customClass="SelectButton" customModule="Custom_White_Balance" customModuleProvider="target">
+                                <rect key="frame" x="30" y="447" width="315" height="60"/>
+                                <color key="backgroundColor" red="0.65942258880000004" green="0.098643559780000001" blue="0.0056972684169999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="zwA-c9-1c3"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="Take Photo">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="jfB-KP-zek" secondAttribute="trailing" constant="30" id="78J-4v-77l"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="1QC-V1-YTa" secondAttribute="bottom" constant="80" id="RHV-Dk-zNg"/>
                             <constraint firstItem="Ogv-D2-N3i" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="abd-F7-KHR"/>
                             <constraint firstAttribute="trailing" secondItem="1QC-V1-YTa" secondAttribute="trailing" constant="30" id="acx-0y-lTm"/>
                             <constraint firstItem="Ogv-D2-N3i" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="c8M-wO-cSo"/>
                             <constraint firstItem="Ogv-D2-N3i" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="hoX-gm-bsa"/>
+                            <constraint firstItem="1QC-V1-YTa" firstAttribute="top" secondItem="jfB-KP-zek" secondAttribute="bottom" constant="20" id="idm-RP-pgf"/>
+                            <constraint firstItem="jfB-KP-zek" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="30" id="qET-4U-PHC"/>
                             <constraint firstItem="Ogv-D2-N3i" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="rQ0-TG-8AI"/>
                             <constraint firstItem="1QC-V1-YTa" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="30" id="tNx-Hq-x7f"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="B4X-4u-MkJ"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="972" y="37.331334332833585"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Ryb-AU-L6r">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fYb-k3-7Yv" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gob-XW-Xft">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="yre-Gz-llm"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vot-Ig-QKl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="18" y="37"/>
         </scene>
     </scenes>
     <resources>
