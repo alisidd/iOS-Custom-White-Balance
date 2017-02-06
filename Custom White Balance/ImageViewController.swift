@@ -14,6 +14,9 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
     @IBOutlet weak var imageView: UIImageView!
     var imageSelected = UIImage()
     @IBOutlet weak var toolbar: UIToolbar!
+    
+    var markers = [Marker]()
+    var idealMarker = Marker()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +51,7 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
         navigationController?.navigationBar.barTintColor = UIColor(red: 0, green: 160/255, blue: 161/255, alpha: 1)
         navigationController?.navigationBar.tintColor = UIColor.white
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(getStats))
     }
     
     func customizeToolbar() {
@@ -99,10 +103,19 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
     
     func makeMarker(forColor color: UIColor) {
         let customMarker = Marker()
-        customMarker.frame = CGRect(x: imageView.center.x, y: imageView.center.y, width: 80, height: 80)
-        customMarker.setColor(forColor: color)
+        customMarker.frame = CGRect(x: view.center.x, y: view.center.y, width: 90, height: 90)
+        customMarker.color = color
+        addMarker(forMarker: customMarker)
         
-        imageView.addSubview(customMarker)
+        imageView.addSubview(customMarker) // #todo put this in the didSet
+    }
+    
+    func addMarker(forMarker marker: Marker) {
+        if marker.color == .white {
+            idealMarker = marker
+        } else {
+            markers.append(marker)
+        }
     }
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
@@ -114,14 +127,20 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
         scrollView.zoomScale = 3
     }
     
-    /*
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+     
+    func getStats() {
+        for marker in markers {
+            print(marker.colorOfCenter())
+        }
+        performSegue(withIdentifier: "Show Stats", sender: nil)
     }
-    */
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "Show Stats" {
+            if let destinationVC = segue.destination as? StatsViewController {
+                
+            }
+        }
+    }
 }

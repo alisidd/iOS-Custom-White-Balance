@@ -130,11 +130,30 @@
                         <outlet property="imageView" destination="1yB-v5-gIP" id="NZI-uM-3i1"/>
                         <outlet property="scrollView" destination="7md-P8-aoD" id="BfB-Na-kQL"/>
                         <outlet property="toolbar" destination="X9a-IA-Ppz" id="Uvm-VF-pzH"/>
+                        <segue destination="543-TY-ErA" kind="show" identifier="Show Stats" id="iwv-l4-AXo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eui-aI-Zgt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1930" y="37"/>
+        </scene>
+        <!--Statistics-->
+        <scene sceneID="WGX-Aq-sr2">
+            <objects>
+                <viewController title="Statistics" id="543-TY-ErA" customClass="StatsViewController" customModule="Custom_White_Balance" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gCi-oq-MTC"/>
+                        <viewControllerLayoutGuide type="bottom" id="ErB-59-e8e"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="f6G-WD-jfB">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AqX-Mn-yt8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2865" y="37"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ryb-AU-L6r">

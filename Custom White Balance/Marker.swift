@@ -10,7 +10,12 @@ import UIKit
 
 class Marker: UIView, UIGestureRecognizerDelegate {
     
-    let shapeLayer = CAShapeLayer()
+    private let shapeLayer = CAShapeLayer()
+    var color = UIColor.white {
+        didSet {
+            setColor(forColor: color)
+        }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -23,7 +28,7 @@ class Marker: UIView, UIGestureRecognizerDelegate {
     }
     
     func setup() {        
-        let circlePath = UIBezierPath(arcCenter: CGPoint(x: bounds.maxX / 2, y: bounds.maxY / 2), radius: 60, startAngle: 0, endAngle: CGFloat(2.0 * M_PI), clockwise: true)
+        let circlePath = UIBezierPath(arcCenter: CGPoint(x: bounds.maxX / 2 + 45, y: bounds.maxY / 2 + 45), radius: 60, startAngle: 0, endAngle: CGFloat(2.0 * M_PI), clockwise: true)
         
         circlePath.move(to: CGPoint(x: circlePath.bounds.midX, y: circlePath.bounds.minY))
         circlePath.addLine(to: CGPoint(x: circlePath.bounds.midX, y: circlePath.bounds.maxY))
@@ -55,6 +60,26 @@ class Marker: UIView, UIGestureRecognizerDelegate {
     
     func setColor(forColor color: UIColor) {
         shapeLayer.strokeColor = color.cgColor
+    }
+    
+    // Function taken from http://stackoverflow.com/questions/3284185/get-pixel-color-of-uiimage
+    func colorOfCenter() -> CGFloat {
+        let imageView = superview as! UIImageView
+        let image = imageView.image!
+        
+        let pixelData = image.cgImage!.dataProvider!.data
+        let data: UnsafePointer<UInt8> = CFDataGetBytePtr(pixelData)
+        let pixelInfo: Int = ((Int(image.size.width) * Int(center.y)) + Int(center.x)) * 4
+
+        let red   = CGFloat(data[pixelInfo + 0])
+        let green = CGFloat(data[pixelInfo + 1])
+        let blue  = CGFloat(data[pixelInfo + 2])
+        
+        switch color {
+        case UIColor.red:   return red
+        case UIColor.blue:  return blue
+        default:            return green //fix this
+        }
     }
 
 }
