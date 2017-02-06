@@ -78,7 +78,7 @@ class Marker: UIView, UIGestureRecognizerDelegate {
         switch color {
         case UIColor.red:   return red
         case UIColor.blue:  return blue
-        default:            return green //fix this
+        default:            return green //#todo fix this
         }
     }
 

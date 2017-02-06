@@ -17,6 +17,7 @@
 		4160D4261E48453500AF2ED6 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4160D4251E48453500AF2ED6 /* ImageViewController.swift */; };
 		4160D4281E485A6500AF2ED6 /* Marker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4160D4271E485A6500AF2ED6 /* Marker.swift */; };
 		4160D42A1E492E8E00AF2ED6 /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4160D4291E492E8E00AF2ED6 /* StatsViewController.swift */; };
+		4160D42C1E49423000AF2ED6 /* ColorBalanceFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4160D42B1E49422F00AF2ED6 /* ColorBalanceFunction.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		4160D4251E48453500AF2ED6 /* ImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		4160D4271E485A6500AF2ED6 /* Marker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Marker.swift; sourceTree = "<group>"; };
 		4160D4291E492E8E00AF2ED6 /* StatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
+		4160D42B1E49422F00AF2ED6 /* ColorBalanceFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorBalanceFunction.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 				4160D4101E47F70400AF2ED6 /* InitialViewController.swift */,
 				4160D4251E48453500AF2ED6 /* ImageViewController.swift */,
 				4160D4291E492E8E00AF2ED6 /* StatsViewController.swift */,
+				4160D42B1E49422F00AF2ED6 /* ColorBalanceFunction.swift */,
 				4160D4271E485A6500AF2ED6 /* Marker.swift */,
 				4160D4121E47F70400AF2ED6 /* Main.storyboard */,
 				4160D4231E47FC7800AF2ED6 /* SelectButton.swift */,
@@ -152,6 +155,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4160D42C1E49423000AF2ED6 /* ColorBalanceFunction.swift in Sources */,
 				4160D4171E47F70400AF2ED6 /* Custom_White_Balance.xcdatamodeld in Sources */,
 				4160D4241E47FC7800AF2ED6 /* SelectButton.swift in Sources */,
 				4160D4261E48453500AF2ED6 /* ImageViewController.swift in Sources */,

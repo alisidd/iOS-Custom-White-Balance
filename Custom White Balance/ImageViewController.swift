@@ -130,16 +130,19 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
     // MARK: - Navigation
      
     func getStats() {
+        var colorIntensities = [CGFloat]()
         for marker in markers {
-            print(marker.colorOfCenter())
+            colorIntensities.append(marker.colorOfCenter())
         }
-        performSegue(withIdentifier: "Show Stats", sender: nil)
+        performSegue(withIdentifier: "Show Stats", sender: colorIntensities)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "Show Stats" {
             if let destinationVC = segue.destination as? StatsViewController {
-                
+                let colorIntensities = sender as! [CGFloat]
+                destinationVC.colors = colorIntensities
+                destinationVC.idealColor = idealMarker.colorOfCenter()
             }
         }
     }
