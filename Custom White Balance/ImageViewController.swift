@@ -8,8 +8,9 @@
 
 import UIKit
 
-class ImageViewController: UIViewController, UIActionSheetDelegate {
+class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheetDelegate {
     
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var imageView: UIImageView!
     var imageSelected = UIImage()
     @IBOutlet weak var toolbar: UIToolbar!
@@ -18,6 +19,8 @@ class ImageViewController: UIViewController, UIActionSheetDelegate {
         super.viewDidLoad()
 
         setImage()
+        setScrollView()
+        updateZoom(forSize: view.bounds.size)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -27,10 +30,16 @@ class ImageViewController: UIViewController, UIActionSheetDelegate {
         customizeToolbar()
     }
     
+    func setScrollView() {
+        scrollView.delegate = self
+        scrollView.contentSize = imageView.image!.size
+    }
+    
     func setImage() {
         imageView.image = imageSelected
         imageView.contentMode = .scaleAspectFit
         imageView.backgroundColor = UIColor.darkGray
+        imageView.isUserInteractionEnabled = true
     }
     
     func customizeNavigationBar() {
@@ -38,6 +47,7 @@ class ImageViewController: UIViewController, UIActionSheetDelegate {
         navigationController?.navigationBar.shadowImage = nil
         navigationController?.navigationBar.barTintColor = UIColor(red: 0, green: 160/255, blue: 161/255, alpha: 1)
         navigationController?.navigationBar.tintColor = UIColor.white
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
     }
     
     func customizeToolbar() {
@@ -50,16 +60,14 @@ class ImageViewController: UIViewController, UIActionSheetDelegate {
         alert.view.tintColor = UIColor(red: 0, green: 160/255, blue: 161/255, alpha: 1)
         
         let addRedMarker = UIAlertAction(title: "Add Red Marker", style: .default) { action in
-            print("WOW")
+            self.makeMarker(forColor: .red)
         }
         
         let addBlueMarker = UIAlertAction(title: "Add Blue Marker", style: .default) { action in
-            print("WOW")
+            self.makeMarker(forColor: .blue)
         }
         
-        let cancelActionButton = UIAlertAction(title: "Cancel", style: .cancel) { action in
-            print("WOW")
-        }
+        let cancelActionButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
         alert.addAction(addRedMarker)
         alert.addAction(addBlueMarker)
@@ -73,22 +81,37 @@ class ImageViewController: UIViewController, UIActionSheetDelegate {
         alert.view.tintColor = UIColor(red: 0, green: 160/255, blue: 161/255, alpha: 1)
         
         let addIdealRedMarker = UIAlertAction(title: "Add Ideal Red Marker", style: .default) { action in
-            print("WOW")
+            self.makeMarker(forColor: .white)
         }
         
         let addIdealBlueMarker = UIAlertAction(title: "Add Ideal Blue Marker", style: .default) { action in
-            print("WOW")
+            self.makeMarker(forColor: .white)
         }
         
-        let cancelActionButton = UIAlertAction(title: "Cancel", style: .cancel) { action in
-            print("WOW")
-        }
+        let cancelActionButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
         alert.addAction(addIdealRedMarker)
         alert.addAction(addIdealBlueMarker)
         alert.addAction(cancelActionButton)
         
         present(alert, animated: true)
+    }
+    
+    func makeMarker(forColor color: UIColor) {
+        let customMarker = Marker()
+        customMarker.frame = CGRect(x: imageView.center.x, y: imageView.center.y, width: 80, height: 80)
+        customMarker.setColor(forColor: color)
+        
+        imageView.addSubview(customMarker)
+    }
+    
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return imageView
+    }
+    
+    func updateZoom(forSize size: CGSize) {
+        scrollView.minimumZoomScale = 0.25
+        scrollView.zoomScale = 3
     }
     
     /*
