@@ -16,7 +16,7 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
     @IBOutlet weak var toolbar: UIToolbar!
     
     var markers = [Marker]()
-    var idealMarker = Marker()
+    var idealMarker: Marker?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -134,7 +134,22 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
         for marker in markers {
             colorIntensities.append(marker.colorOfCenter())
         }
-        performSegue(withIdentifier: "Show Stats", sender: colorIntensities)
+        if idealMarker == nil {
+            alertUser(withMessage: "You need to add an ideal marker")
+        } else if markers.count == 0 {
+            alertUser(withMessage: "You need to add a marker")
+        } else {
+            performSegue(withIdentifier: "Show Stats", sender: colorIntensities)
+        }
+    }
+    
+    func alertUser(withMessage message: String) {
+        let alert = UIAlertController(title: "Incomplete Markers", message: message, preferredStyle: .alert)
+        
+        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(action)
+        
+        present(alert, animated: true)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -142,7 +157,9 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
             if let destinationVC = segue.destination as? StatsViewController {
                 let colorIntensities = sender as! [CGFloat]
                 destinationVC.colors = colorIntensities
-                destinationVC.idealColor = idealMarker.colorOfCenter()
+                if let unwrappedIdealMarker = idealMarker {
+                    destinationVC.idealColor = unwrappedIdealMarker.colorOfCenter()
+                }
             }
         }
     }

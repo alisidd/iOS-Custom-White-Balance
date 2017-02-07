@@ -35,6 +35,13 @@ class InitialViewController: UIViewController, UIImagePickerControllerDelegate, 
         navigationController?.navigationBar.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
     }
     
+    @IBAction func takePhoto(_ sender: SelectButton) {
+        imagePicker.allowsEditing = false
+        imagePicker.sourceType = .camera
+        
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
     @IBAction func chooseImage(_ sender: SelectButton) {
         imagePicker.allowsEditing = false
         imagePicker.sourceType = .photoLibrary
