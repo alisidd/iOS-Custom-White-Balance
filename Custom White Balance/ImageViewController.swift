@@ -12,15 +12,20 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var statsView: UIView!
     var imageSelected = UIImage()
     @IBOutlet weak var toolbar: UIToolbar!
+    var resultsShowing = false
     
     var markers = [Marker]()
     var idealMarker: (marker: Marker?, type: String)?
+    
+    @IBOutlet weak var pHValue: UILabel!
+    var function = ColorBalanceFunction()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        statsView.isHidden = true
         setImage()
         setScrollView()
         updateZoom(forSize: view.bounds.size)
@@ -51,7 +56,9 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
         navigationController?.navigationBar.barTintColor = UIColor(red: 1, green: 147/255, blue: 0, alpha: 1)
         navigationController?.navigationBar.tintColor = UIColor.white
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(getStats))
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Results", style: .done, target: self, action: #selector(getStats))
+        self.navigationItem.rightBarButtonItem?.title = "Results"
     }
     
     func customizeToolbar() {
@@ -130,19 +137,44 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
     // MARK: - Navigation
      
     func getStats() {
+        if idealMarker == nil {
+            alertUser(withMessage: "You need to add an ideal marker")
+        } else if markers.count == 0 {
+            alertUser(withMessage: "You need to add a marker")
+        } else if !resultsShowing {
+            UIView.animate(withDuration: 0.5) {
+                self.statsView.frame.origin.y = self.view.frame.origin.y + 110
+                self.statsView.isHidden = false
+                
+                self.resultsShowing = true
+                self.setResults()
+            }
+            navigationItem.rightBarButtonItem?.title = "Done"
+        } else {
+            UIView.animate(withDuration: 0.5) {
+                self.statsView.frame.origin.y = self.view.frame.origin.y + self.view.frame.size.height
+                
+                self.resultsShowing = false
+            }
+            navigationItem.rightBarButtonItem?.title = "Results"
+        }
+    }
+    
+    func setResults() {
         var colorIntensities = [(red: CGFloat, blue: CGFloat)]()
         
         for marker in markers {
             let colorsFound = marker.colorOfCenter()
             colorIntensities.append(red: colorsFound.red, blue: colorsFound.blue)
         }
-        if idealMarker == nil {
-            alertUser(withMessage: "You need to add an ideal marker")
-        } else if markers.count == 0 {
-            alertUser(withMessage: "You need to add a marker")
+        
+        if idealMarker!.type == "red" {
+            function.setResult(forColors: colorIntensities, withIdeal: (idealMarker!.marker!.colorOfCenter().red, idealMarker!.type))
         } else {
-            performSegue(withIdentifier: "Show Stats", sender: colorIntensities)
+            function.setResult(forColors: colorIntensities, withIdeal: (idealMarker!.marker!.colorOfCenter().blue, idealMarker!.type))
         }
+        
+        pHValue.text = String(describing: function.result)
     }
     
     func alertUser(withMessage customMessage: String) {
