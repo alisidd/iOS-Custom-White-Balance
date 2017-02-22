@@ -63,7 +63,7 @@ class Marker: UIView, UIGestureRecognizerDelegate {
     }
     
     // Function taken from http://stackoverflow.com/questions/3284185/get-pixel-color-of-uiimage
-    func colorOfCenter() -> CGFloat {
+    func colorOfCenter() -> (red: CGFloat, blue: CGFloat) {
         let imageView = superview as! UIImageView
         let image = imageView.image!
         
@@ -72,14 +72,10 @@ class Marker: UIView, UIGestureRecognizerDelegate {
         let pixelInfo: Int = ((Int(image.size.width) * Int(center.y)) + Int(center.x)) * 4
 
         let red   = CGFloat(data[pixelInfo + 0])
-        let green = CGFloat(data[pixelInfo + 1])
+        let green = CGFloat(data[pixelInfo + 1]) // unused
         let blue  = CGFloat(data[pixelInfo + 2])
         
-        switch color {
-        case UIColor.red:   return red
-        case UIColor.blue:  return blue
-        default:            return green //#todo fix this
-        }
+        return (red: red, blue: blue)
     }
 
 }

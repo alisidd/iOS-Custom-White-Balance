@@ -10,14 +10,27 @@ import UIKit
 
 class StatsViewController: UIViewController {
     
-    var colors = [CGFloat()]
-    var idealColor = CGFloat()
+    @IBOutlet weak var redValue: UILabel!
+    @IBOutlet weak var blueValue: UILabel!
+    @IBOutlet weak var result: UILabel!
+    
+    var colors = [(red: CGFloat, blue: CGFloat)]()
+    var idealColorMarker = (marker: Marker(), type: String())
     var function = ColorBalanceFunction()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        function.setResult(forColors: colors, withIdeal: idealColor)
+        if idealColorMarker.type == "red" {
+            function.setResult(forColors: colors, withIdeal: (idealColorMarker.marker.colorOfCenter().red, idealColorMarker.type))
+        } else {
+            function.setResult(forColors: colors, withIdeal: (idealColorMarker.marker.colorOfCenter().blue, idealColorMarker.type))
+        }
+        
+        redValue.text = String(describing: function.averageRedColor)
+        blueValue.text = String(describing: function.averageBlueColor)
+        result.text = String(describing: function.result)
+        
     }
 
 }

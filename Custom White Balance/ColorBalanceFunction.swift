@@ -10,19 +10,30 @@ import Foundation
 import UIKit
 
 class ColorBalanceFunction {
-    var averageColor = CGFloat()
+    var averageRedColor = CGFloat()
+    var averageBlueColor = CGFloat()
     var result = CGFloat()
     
-    func setResult(forColors colors: [CGFloat], withIdeal idealColor: CGFloat) {
-        var sumOfColors: CGFloat = 0
+    func setResult(forColors colors: [(red: CGFloat, blue: CGFloat)], withIdeal idealColor: (colorValue: CGFloat, type: String)) {
+        var sumOfRedColors: CGFloat = 0
+        var sumOfBlueColors: CGFloat = 0
         
         // Get the sum and average of all the selected colors
         for color in colors {
-            sumOfColors += color
+            sumOfRedColors += color.red
         }
         
-        averageColor = sumOfColors / CGFloat(colors.count)
+        for color in colors {
+            sumOfBlueColors += color.blue
+        }
         
-        result = idealColor - averageColor
+        averageRedColor = sumOfRedColors / CGFloat(colors.count)
+        averageBlueColor = sumOfBlueColors / CGFloat(colors.count)
+        
+        if idealColor.type == "red" {
+            result = idealColor.colorValue - averageRedColor
+        } else if idealColor.type == "blue" {
+            result = idealColor.colorValue - averageBlueColor
+        }
     }
 }

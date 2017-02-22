@@ -16,7 +16,7 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
     @IBOutlet weak var toolbar: UIToolbar!
     
     var markers = [Marker]()
-    var idealMarker: Marker?
+    var idealMarker: (marker: Marker?, type: String)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +40,7 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
     
     func setImage() {
         imageView.image = imageSelected
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         imageView.backgroundColor = UIColor.darkGray
         imageView.isUserInteractionEnabled = true
     }
@@ -48,7 +48,7 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
     func customizeNavigationBar() {
         navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
         navigationController?.navigationBar.shadowImage = nil
-        navigationController?.navigationBar.barTintColor = UIColor(red: 0, green: 160/255, blue: 161/255, alpha: 1)
+        navigationController?.navigationBar.barTintColor = UIColor(red: 1, green: 147/255, blue: 0, alpha: 1)
         navigationController?.navigationBar.tintColor = UIColor.white
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(getStats))
@@ -64,11 +64,11 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
         alert.view.tintColor = UIColor(red: 0, green: 160/255, blue: 161/255, alpha: 1)
         
         let addRedMarker = UIAlertAction(title: "Add Red Marker", style: .default) { action in
-            self.makeMarker(forColor: .red)
+            self.makeMarker(forColor: .red, withType: "red")
         }
         
         let addBlueMarker = UIAlertAction(title: "Add Blue Marker", style: .default) { action in
-            self.makeMarker(forColor: .blue)
+            self.makeMarker(forColor: .blue, withType: "blue")
         }
         
         let cancelActionButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -85,11 +85,11 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
         alert.view.tintColor = UIColor(red: 0, green: 160/255, blue: 161/255, alpha: 1)
         
         let addIdealRedMarker = UIAlertAction(title: "Add Ideal Red Marker", style: .default) { action in
-            self.makeMarker(forColor: .white)
+            self.makeMarker(forColor: .white, withType: "red")
         }
         
         let addIdealBlueMarker = UIAlertAction(title: "Add Ideal Blue Marker", style: .default) { action in
-            self.makeMarker(forColor: .white)
+            self.makeMarker(forColor: .white, withType: "blue")
         }
         
         let cancelActionButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -101,18 +101,18 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
         present(alert, animated: true)
     }
     
-    func makeMarker(forColor color: UIColor) {
+    func makeMarker(forColor color: UIColor, withType type: String) {
         let customMarker = Marker()
         customMarker.frame = CGRect(x: view.center.x, y: view.center.y, width: 90, height: 90)
         customMarker.color = color
-        addMarker(forMarker: customMarker)
+        addMarker(forMarker: customMarker, withType: type)
         
-        imageView.addSubview(customMarker) // #todo put this in the didSet
+        imageView.addSubview(customMarker)
     }
     
-    func addMarker(forMarker marker: Marker) {
+    func addMarker(forMarker marker: Marker, withType type: String) {
         if marker.color == .white {
-            idealMarker = marker
+            idealMarker = (marker, type)
         } else {
             markers.append(marker)
         }
@@ -124,15 +124,17 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
     
     func updateZoom(forSize size: CGSize) {
         scrollView.minimumZoomScale = 0.25
-        scrollView.zoomScale = 3
+        scrollView.zoomScale = 0.25
     }
     
     // MARK: - Navigation
      
     func getStats() {
-        var colorIntensities = [CGFloat]()
+        var colorIntensities = [(red: CGFloat, blue: CGFloat)]()
+        
         for marker in markers {
-            colorIntensities.append(marker.colorOfCenter())
+            let colorsFound = marker.colorOfCenter()
+            colorIntensities.append(red: colorsFound.red, blue: colorsFound.blue)
         }
         if idealMarker == nil {
             alertUser(withMessage: "You need to add an ideal marker")
@@ -143,8 +145,8 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
         }
     }
     
-    func alertUser(withMessage message: String) {
-        let alert = UIAlertController(title: "Incomplete Markers", message: message, preferredStyle: .alert)
+    func alertUser(withMessage customMessage: String) {
+        let alert = UIAlertController(title: "Incomplete Markers", message: customMessage, preferredStyle: .alert)
         
         let action = UIAlertAction(title: "OK", style: .default, handler: nil)
         alert.addAction(action)
@@ -155,10 +157,10 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "Show Stats" {
             if let destinationVC = segue.destination as? StatsViewController {
-                let colorIntensities = sender as! [CGFloat]
+                let colorIntensities = sender as! [(red: CGFloat, blue: CGFloat)]
                 destinationVC.colors = colorIntensities
-                if let unwrappedIdealMarker = idealMarker {
-                    destinationVC.idealColor = unwrappedIdealMarker.colorOfCenter()
+                if let unwrappedIdealMarker = idealMarker?.marker {
+                    destinationVC.idealColorMarker = (marker: unwrappedIdealMarker, type: idealMarker!.type)
                 }
             }
         }
