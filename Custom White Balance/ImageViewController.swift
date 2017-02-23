@@ -89,7 +89,7 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
     
     @IBAction func addIdealMarker(_ sender: UIBarButtonItem) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        alert.view.tintColor = UIColor(red: 0, green: 160/255, blue: 161/255, alpha: 1)
+        alert.view.tintColor = UIColor(red: 1, green: 147/255, blue: 0, alpha: 1)
         
         let addIdealRedMarker = UIAlertAction(title: "Add Ideal Red Marker", style: .default) { action in
             self.makeMarker(forColor: .white, withType: "red")
@@ -183,6 +183,7 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
     
     func askForFunction() {
         let alertController = UIAlertController(title: "pH Function", message: "Please enter the function:", preferredStyle: .alert)
+        alertController.view.tintColor = UIColor(red: 1, green: 147/255, blue: 0, alpha: 1)
         
         
         let confirmAction = UIAlertAction(title: "Confirm", style: .default) { _ in
@@ -209,6 +210,7 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
     
     func alertUser(withMessage customMessage: String) {
         let alert = UIAlertController(title: "Incomplete Markers", message: customMessage, preferredStyle: .alert)
+        alert.view.tintColor = UIColor(red: 1, green: 147/255, blue: 0, alpha: 1)
         
         let action = UIAlertAction(title: "OK", style: .default, handler: nil)
         alert.addAction(action)
