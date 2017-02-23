@@ -15,7 +15,7 @@
 		4160D4261E48453500AF2ED6 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4160D4251E48453500AF2ED6 /* ImageViewController.swift */; };
 		4160D4281E485A6500AF2ED6 /* Marker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4160D4271E485A6500AF2ED6 /* Marker.swift */; };
 		4160D42A1E492E8E00AF2ED6 /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4160D4291E492E8E00AF2ED6 /* StatsViewController.swift */; };
-		4160D42C1E49423000AF2ED6 /* ColorBalanceFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4160D42B1E49422F00AF2ED6 /* ColorBalanceFunction.swift */; };
+		4160D42C1E49423000AF2ED6 /* pHFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4160D42B1E49422F00AF2ED6 /* pHFunction.swift */; };
 		418F2D631E5D60E900405384 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 418F2D621E5D60E900405384 /* Assets.xcassets */; };
 		418F2D651E5D69BF00405384 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 418F2D641E5D69BF00405384 /* Main.storyboard */; };
 /* End PBXBuildFile section */
@@ -31,7 +31,7 @@
 		4160D4251E48453500AF2ED6 /* ImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		4160D4271E485A6500AF2ED6 /* Marker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Marker.swift; sourceTree = "<group>"; };
 		4160D4291E492E8E00AF2ED6 /* StatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
-		4160D42B1E49422F00AF2ED6 /* ColorBalanceFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorBalanceFunction.swift; sourceTree = "<group>"; };
+		4160D42B1E49422F00AF2ED6 /* pHFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pHFunction.swift; sourceTree = "<group>"; };
 		418F2D621E5D60E900405384 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		418F2D641E5D69BF00405384 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -70,7 +70,7 @@
 				4160D4101E47F70400AF2ED6 /* InitialViewController.swift */,
 				4160D4251E48453500AF2ED6 /* ImageViewController.swift */,
 				4160D4291E492E8E00AF2ED6 /* StatsViewController.swift */,
-				4160D42B1E49422F00AF2ED6 /* ColorBalanceFunction.swift */,
+				4160D42B1E49422F00AF2ED6 /* pHFunction.swift */,
 				4160D4271E485A6500AF2ED6 /* Marker.swift */,
 				418F2D641E5D69BF00405384 /* Main.storyboard */,
 				4160D4231E47FC7800AF2ED6 /* SelectButton.swift */,
@@ -155,7 +155,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4160D42C1E49423000AF2ED6 /* ColorBalanceFunction.swift in Sources */,
+				4160D42C1E49423000AF2ED6 /* pHFunction.swift in Sources */,
 				4160D4171E47F70400AF2ED6 /* Custom_White_Balance.xcdatamodeld in Sources */,
 				4160D4241E47FC7800AF2ED6 /* SelectButton.swift in Sources */,
 				4160D4261E48453500AF2ED6 /* ImageViewController.swift in Sources */,

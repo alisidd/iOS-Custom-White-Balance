@@ -21,7 +21,7 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
     var idealMarker: (marker: Marker?, type: String)?
     
     @IBOutlet weak var pHValue: UILabel!
-    var function = ColorBalanceFunction()
+    var function = pHFunction()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +46,7 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
     func setImage() {
         imageView.image = imageSelected
         imageView.contentMode = .scaleAspectFill
-        imageView.backgroundColor = UIColor.darkGray
+        imageView.backgroundColor = .black
         imageView.isUserInteractionEnabled = true
     }
     
@@ -54,7 +54,7 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
         navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
         navigationController?.navigationBar.shadowImage = nil
         navigationController?.navigationBar.barTintColor = UIColor(red: 1, green: 147/255, blue: 0, alpha: 1)
-        navigationController?.navigationBar.tintColor = UIColor.white
+        navigationController?.navigationBar.tintColor = .white
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Results", style: .done, target: self, action: #selector(getStats))
@@ -68,7 +68,7 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
 
     @IBAction func addMarker(_ sender: UIBarButtonItem) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        alert.view.tintColor = UIColor(red: 0, green: 160/255, blue: 161/255, alpha: 1)
+        alert.view.tintColor = UIColor(red: 1, green: 147/255, blue: 0, alpha: 1)
         
         let addRedMarker = UIAlertAction(title: "Add Red Marker", style: .default) { action in
             self.makeMarker(forColor: .red, withType: "red")
@@ -110,7 +110,7 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
     
     func makeMarker(forColor color: UIColor, withType type: String) {
         let customMarker = Marker()
-        customMarker.frame = CGRect(x: view.center.x, y: view.center.y, width: 90, height: 90)
+        customMarker.frame = CGRect(x: scrollView.contentOffset.x + scrollView.frame.size.width/2, y: scrollView.contentOffset.y + scrollView.frame.size.height/2, width: 90, height: 90)
         customMarker.color = color
         addMarker(forMarker: customMarker, withType: type)
         
@@ -142,12 +142,13 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
         } else if markers.count == 0 {
             alertUser(withMessage: "You need to add a marker")
         } else if !resultsShowing {
+            
             UIView.animate(withDuration: 0.5) {
                 self.statsView.frame.origin.y = self.view.frame.origin.y + 110
                 self.statsView.isHidden = false
                 
                 self.resultsShowing = true
-                self.setResults()
+                self.askForFunction()
             }
             navigationItem.rightBarButtonItem?.title = "Done"
         } else {
@@ -168,13 +169,42 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
             colorIntensities.append(red: colorsFound.red, blue: colorsFound.blue)
         }
         
+        let fetchedFunction = UserDefaults.standard.string(forKey: "pHFunction")!
+
         if idealMarker!.type == "red" {
-            function.setResult(forColors: colorIntensities, withIdeal: (idealMarker!.marker!.colorOfCenter().red, idealMarker!.type))
+            function.setResult(forColors: colorIntensities, withIdeal: (idealMarker!.marker!.colorOfCenter().red, idealMarker!.type), forFunction: fetchedFunction)
         } else {
-            function.setResult(forColors: colorIntensities, withIdeal: (idealMarker!.marker!.colorOfCenter().blue, idealMarker!.type))
+            function.setResult(forColors: colorIntensities, withIdeal: (idealMarker!.marker!.colorOfCenter().blue, idealMarker!.type), forFunction: fetchedFunction)
         }
         
-        pHValue.text = String(describing: function.result)
+        pHValue.text = String(describing: function.pH)
+        
+    }
+    
+    func askForFunction() {
+        let alertController = UIAlertController(title: "pH Function", message: "Please enter the function:", preferredStyle: .alert)
+        
+        
+        let confirmAction = UIAlertAction(title: "Confirm", style: .default) { _ in
+            if let fetchedFunction = alertController.textFields?[0].text, !fetchedFunction.isEmpty {
+                UserDefaults.standard.set(fetchedFunction, forKey: "pHFunction")
+                UserDefaults.standard.synchronize()
+                self.setResults()
+            }
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in }
+        
+        alertController.addTextField { (textField) in
+            if let functionAlreadySet = UserDefaults.standard.string(forKey: "pHFunction") {
+                textField.text = functionAlreadySet
+            }
+        }
+        
+        alertController.addAction(confirmAction)
+        alertController.addAction(cancelAction)
+        
+        self.present(alertController, animated: true, completion: nil)
     }
     
     func alertUser(withMessage customMessage: String) {
@@ -184,17 +214,5 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
         alert.addAction(action)
         
         present(alert, animated: true)
-    }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "Show Stats" {
-            if let destinationVC = segue.destination as? StatsViewController {
-                let colorIntensities = sender as! [(red: CGFloat, blue: CGFloat)]
-                destinationVC.colors = colorIntensities
-                if let unwrappedIdealMarker = idealMarker?.marker {
-                    destinationVC.idealColorMarker = (marker: unwrappedIdealMarker, type: idealMarker!.type)
-                }
-            }
-        }
     }
 }

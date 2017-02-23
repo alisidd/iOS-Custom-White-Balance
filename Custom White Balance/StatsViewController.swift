@@ -16,20 +16,20 @@ class StatsViewController: UIViewController {
     
     var colors = [(red: CGFloat, blue: CGFloat)]()
     var idealColorMarker = (marker: Marker(), type: String())
-    var function = ColorBalanceFunction()
+    var function = pHFunction()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         if idealColorMarker.type == "red" {
-            function.setResult(forColors: colors, withIdeal: (idealColorMarker.marker.colorOfCenter().red, idealColorMarker.type))
+            //function.setResult(forColors: colors, withIdeal: (idealColorMarker.marker.colorOfCenter().red, idealColorMarker.type))
         } else {
-            function.setResult(forColors: colors, withIdeal: (idealColorMarker.marker.colorOfCenter().blue, idealColorMarker.type))
+            //function.setResult(forColors: colors, withIdeal: (idealColorMarker.marker.colorOfCenter().blue, idealColorMarker.type))
         }
         
         redValue.text = String(describing: function.averageRedColor)
         blueValue.text = String(describing: function.averageBlueColor)
-        result.text = String(describing: function.result)
+        //result.text = String(describing: function.result)
         
     }
 
