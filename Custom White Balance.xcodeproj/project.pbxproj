@@ -69,7 +69,6 @@
 				4160D40E1E47F70400AF2ED6 /* AppDelegate.swift */,
 				4160D4101E47F70400AF2ED6 /* InitialViewController.swift */,
 				4160D4251E48453500AF2ED6 /* ImageViewController.swift */,
-				4160D4291E492E8E00AF2ED6 /* StatsViewController.swift */,
 				4160D42B1E49422F00AF2ED6 /* pHFunction.swift */,
 				4160D4271E485A6500AF2ED6 /* Marker.swift */,
 				418F2D641E5D69BF00405384 /* Main.storyboard */,
@@ -78,6 +77,7 @@
 				418F2D621E5D60E900405384 /* Assets.xcassets */,
 				4160D41D1E47F70400AF2ED6 /* Info.plist */,
 				4160D4151E47F70400AF2ED6 /* Custom_White_Balance.xcdatamodeld */,
+				4160D4291E492E8E00AF2ED6 /* StatsViewController.swift */,
 			);
 			path = "Custom White Balance";
 			sourceTree = "<group>";

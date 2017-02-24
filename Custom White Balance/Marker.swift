@@ -28,7 +28,7 @@ class Marker: UIView, UIGestureRecognizerDelegate {
     }
     
     func setup() {        
-        let circlePath = UIBezierPath(arcCenter: CGPoint(x: bounds.maxX / 2 + 45, y: bounds.maxY / 2 + 45), radius: 60, startAngle: 0, endAngle: CGFloat(2.0 * M_PI), clockwise: true)
+        let circlePath = UIBezierPath(arcCenter: CGPoint(x: center.x + 100, y: center.y + 100), radius: 120, startAngle: 0, endAngle: CGFloat(2.0 * M_PI), clockwise: true)
         
         circlePath.move(to: CGPoint(x: circlePath.bounds.midX, y: circlePath.bounds.minY))
         circlePath.addLine(to: CGPoint(x: circlePath.bounds.midX, y: circlePath.bounds.maxY))
@@ -62,20 +62,20 @@ class Marker: UIView, UIGestureRecognizerDelegate {
         shapeLayer.strokeColor = color.cgColor
     }
     
-    // Function taken from http://stackoverflow.com/questions/3284185/get-pixel-color-of-uiimage
     func colorOfCenter() -> (red: CGFloat, blue: CGFloat) {
         let imageView = superview as! UIImageView
-        let image = imageView.image!
         
-        let pixelData = image.cgImage!.dataProvider!.data
-        let data: UnsafePointer<UInt8> = CFDataGetBytePtr(pixelData)
-        let pixelInfo: Int = ((Int(image.size.width) * Int(center.y)) + Int(center.x)) * 4
-
-        let red   = CGFloat(data[pixelInfo + 0])
-        let green = CGFloat(data[pixelInfo + 1]) // unused
-        let blue  = CGFloat(data[pixelInfo + 2])
+        var pixel : [UInt8] = [0, 0, 0, 0]
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue)
+        let context = CGContext(data: UnsafeMutablePointer(mutating: pixel), width: 1, height: 1, bitsPerComponent: 8, bytesPerRow: 4, space: colorSpace, bitmapInfo: bitmapInfo.rawValue)
         
-        return (red: red, blue: blue)
+        context!.translateBy(x: -(center.x + 1), y: -(center.y + 1))
+        imageView.layer.render(in: context!)
+        
+        return (red: CGFloat(pixel[0]), blue: CGFloat(pixel[2]))
     }
 
 }
+
+

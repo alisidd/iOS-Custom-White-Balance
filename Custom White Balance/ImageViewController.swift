@@ -20,7 +20,13 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
     var markers = [Marker]()
     var idealMarker: (marker: Marker?, type: String)?
     
-    @IBOutlet weak var pHValue: UILabel!
+    @IBOutlet weak var firstpHValue: UILabel!
+    @IBOutlet weak var secondpHValue: UILabel!
+    @IBOutlet weak var thirdpHValue: UILabel!
+    @IBOutlet weak var fourthpHValue: UILabel!
+    @IBOutlet weak var averageIntensity: UILabel!
+
+
     var function = pHFunction()
 
     override func viewDidLoad() {
@@ -110,7 +116,7 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
     
     func makeMarker(forColor color: UIColor, withType type: String) {
         let customMarker = Marker()
-        customMarker.frame = CGRect(x: scrollView.contentOffset.x + scrollView.frame.size.width/2, y: scrollView.contentOffset.y + scrollView.frame.size.height/2, width: 90, height: 90)
+        customMarker.frame = CGRect(x: scrollView.contentOffset.x + scrollView.frame.size.width/2, y: scrollView.contentOffset.y + scrollView.frame.size.height/2, width: 200, height: 200)
         customMarker.color = color
         addMarker(forMarker: customMarker, withType: type)
         
@@ -130,7 +136,7 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
     }
     
     func updateZoom(forSize size: CGSize) {
-        scrollView.minimumZoomScale = 0.25
+        scrollView.minimumZoomScale = 0.1
         scrollView.zoomScale = 0.25
     }
     
@@ -144,7 +150,7 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
         } else if !resultsShowing {
             
             UIView.animate(withDuration: 0.5) {
-                self.statsView.frame.origin.y = self.view.frame.origin.y + 110
+                self.statsView.frame.origin.y = self.view.frame.origin.y + 70
                 self.statsView.isHidden = false
                 
                 self.resultsShowing = true
@@ -170,15 +176,26 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
         }
         
         let fetchedFunction = UserDefaults.standard.string(forKey: "pHFunction")!
-
-        if idealMarker!.type == "red" {
-            function.setResult(forColors: colorIntensities, withIdeal: (idealMarker!.marker!.colorOfCenter().red, idealMarker!.type), forFunction: fetchedFunction)
-        } else {
-            function.setResult(forColors: colorIntensities, withIdeal: (idealMarker!.marker!.colorOfCenter().blue, idealMarker!.type), forFunction: fetchedFunction)
-        }
         
-        pHValue.text = String(describing: function.pH)
+        function.setResult(forColors: [colorIntensities[0]], withIdeal: (idealMarker!.marker!.colorOfCenter().red, idealMarker!.type), forFunction: fetchedFunction)
         
+        firstpHValue.text = String(describing: function.pH)
+        
+        function.setResult(forColors: [colorIntensities[1]], withIdeal: (idealMarker!.marker!.colorOfCenter().red, idealMarker!.type), forFunction: fetchedFunction)
+        
+        secondpHValue.text = String(describing: function.pH)
+        
+        function.setResult(forColors: [colorIntensities[2]], withIdeal: (idealMarker!.marker!.colorOfCenter().red, idealMarker!.type), forFunction: fetchedFunction)
+        
+        thirdpHValue.text = String(describing: function.pH)
+        
+        function.setResult(forColors: [colorIntensities[3]], withIdeal: (idealMarker!.marker!.colorOfCenter().red, idealMarker!.type), forFunction: fetchedFunction)
+        
+        fourthpHValue.text = String(describing: function.pH)
+        
+        function.setResult(forColors: colorIntensities, withIdeal: (idealMarker!.marker!.colorOfCenter().red, idealMarker!.type), forFunction: fetchedFunction)
+        
+        averageIntensity.text = String(describing: function.resultColor)
     }
     
     func askForFunction() {
