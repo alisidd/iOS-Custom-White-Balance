@@ -58,11 +58,7 @@ class InitialViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        if let _ = imageSelected {
-            return true
-        } else {
-            return false
-        }
+        return false
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

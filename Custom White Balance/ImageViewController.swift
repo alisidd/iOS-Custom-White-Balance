@@ -34,19 +34,33 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
         statsView.isHidden = true
         setImage()
         setScrollView()
+        setStatsView()
+        
         updateZoom(forSize: view.bounds.size)
+        setGestureRecognizers()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         customizeNavigationBar()
-        customizeToolbar()
     }
     
     func setScrollView() {
         scrollView.delegate = self
         scrollView.contentSize = imageView.image!.size
+    }
+    
+    func setStatsView() {
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = statsView.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+
+        statsView.insertSubview(blurEffectView, at: 0)
+        
+        statsView.layer.cornerRadius = 10
+        statsView.clipsToBounds = true
     }
     
     func setImage() {
@@ -59,7 +73,7 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
     func customizeNavigationBar() {
         navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
         navigationController?.navigationBar.shadowImage = nil
-        navigationController?.navigationBar.barTintColor = UIColor(red: 1, green: 147/255, blue: 0, alpha: 1)
+        navigationController?.navigationBar.barTintColor = UIColor(red: 183/255, green: 127/255, blue: 140/255, alpha: 1)
         navigationController?.navigationBar.tintColor = .white
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         
@@ -67,56 +81,9 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
         self.navigationItem.rightBarButtonItem?.title = "Results"
     }
     
-    func customizeToolbar() {
-        let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        toolbar.items?.append(space)
-    }
-
-    @IBAction func addMarker(_ sender: UIBarButtonItem) {
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        alert.view.tintColor = UIColor(red: 1, green: 147/255, blue: 0, alpha: 1)
-        
-        let addRedMarker = UIAlertAction(title: "Add Red Marker", style: .default) { action in
-            self.makeMarker(forColor: .red, withType: "red")
-        }
-        
-        let addBlueMarker = UIAlertAction(title: "Add Blue Marker", style: .default) { action in
-            self.makeMarker(forColor: .blue, withType: "blue")
-        }
-        
-        let cancelActionButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        
-        alert.addAction(addRedMarker)
-        alert.addAction(addBlueMarker)
-        alert.addAction(cancelActionButton)
-        
-        present(alert, animated: true)
-    }
-    
-    @IBAction func addIdealMarker(_ sender: UIBarButtonItem) {
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        alert.view.tintColor = UIColor(red: 1, green: 147/255, blue: 0, alpha: 1)
-        
-        let addIdealRedMarker = UIAlertAction(title: "Add Ideal Red Marker", style: .default) { action in
-            self.makeMarker(forColor: .white, withType: "red")
-        }
-        
-        let addIdealBlueMarker = UIAlertAction(title: "Add Ideal Blue Marker", style: .default) { action in
-            self.makeMarker(forColor: .white, withType: "blue")
-        }
-        
-        let cancelActionButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        
-        alert.addAction(addIdealRedMarker)
-        alert.addAction(addIdealBlueMarker)
-        alert.addAction(cancelActionButton)
-        
-        present(alert, animated: true)
-    }
-    
-    func makeMarker(forColor color: UIColor, withType type: String) {
+    func makeMarker(forColor color: UIColor, withType type: String, atPos pos: CGPoint) {
         let customMarker = Marker()
-        customMarker.frame = CGRect(x: scrollView.contentOffset.x + scrollView.frame.size.width/2, y: scrollView.contentOffset.y + scrollView.frame.size.height/2, width: 200, height: 200)
+        customMarker.frame = CGRect(x: pos.x - 100, y: pos.y - 100, width: 200, height: 200)
         customMarker.color = color
         addMarker(forMarker: customMarker, withType: type)
         
@@ -140,17 +107,38 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
         scrollView.zoomScale = 0.25
     }
     
+    func setGestureRecognizers() {
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(detectPress(_:)))
+        
+        imageView.gestureRecognizers = [longPressRecognizer]
+    }
+    
+    func detectPress(_ recognizer: UILongPressGestureRecognizer) {
+        if recognizer.state == .began {
+            if markers.count == 4 && idealMarker == nil {
+                self.makeMarker(forColor: .white, withType: "red", atPos: recognizer.location(in: imageView))
+                navigationItem.title = ""
+            } else if markers.count < 4 {
+                self.makeMarker(forColor: .red, withType: "red", atPos: recognizer.location(in: imageView))
+                if markers.count == 4 {
+                    navigationItem.title = "Choose Background"
+                }
+            }
+        }
+        
+    }
+    
     // MARK: - Navigation
      
     func getStats() {
         if idealMarker == nil {
-            alertUser(withMessage: "You need to add an ideal marker")
-        } else if markers.count == 0 {
-            alertUser(withMessage: "You need to add a marker")
+            alertUser(withMessage: "You need to add a background marker")
+        } else if markers.count != 4 {
+            alertUser(withMessage: "You need to add \(4 - markers.count) more marker\(markers.count < 3 ? "s" : "")")
         } else if !resultsShowing {
             
             UIView.animate(withDuration: 0.5) {
-                self.statsView.frame.origin.y = self.view.frame.origin.y + 70
+                self.statsView.frame.origin.y = self.view.frame.origin.y + 194
                 self.statsView.isHidden = false
                 
                 self.resultsShowing = true

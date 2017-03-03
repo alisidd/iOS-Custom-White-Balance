@@ -6,6 +6,8 @@
 	<string>This app requires the photo to perform the white balance calculations</string>
 	<key>NSCameraUsageDescription</key>
 	<string></string>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
