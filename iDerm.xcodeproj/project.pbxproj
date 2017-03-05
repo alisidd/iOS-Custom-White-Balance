@@ -14,14 +14,13 @@
 		4160D4241E47FC7800AF2ED6 /* SelectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4160D4231E47FC7800AF2ED6 /* SelectButton.swift */; };
 		4160D4261E48453500AF2ED6 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4160D4251E48453500AF2ED6 /* ImageViewController.swift */; };
 		4160D4281E485A6500AF2ED6 /* Marker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4160D4271E485A6500AF2ED6 /* Marker.swift */; };
-		4160D42A1E492E8E00AF2ED6 /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4160D4291E492E8E00AF2ED6 /* StatsViewController.swift */; };
 		4160D42C1E49423000AF2ED6 /* pHFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4160D42B1E49422F00AF2ED6 /* pHFunction.swift */; };
 		418F2D631E5D60E900405384 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 418F2D621E5D60E900405384 /* Assets.xcassets */; };
 		418F2D651E5D69BF00405384 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 418F2D641E5D69BF00405384 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4160D40B1E47F70400AF2ED6 /* iDerma.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iDerma.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4160D40B1E47F70400AF2ED6 /* iDerm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iDerm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4160D40E1E47F70400AF2ED6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4160D4101E47F70400AF2ED6 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		4160D4161E47F70400AF2ED6 /* Custom_White_Balance.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Custom_White_Balance.xcdatamodel; sourceTree = "<group>"; };
@@ -30,7 +29,6 @@
 		4160D4231E47FC7800AF2ED6 /* SelectButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectButton.swift; sourceTree = "<group>"; };
 		4160D4251E48453500AF2ED6 /* ImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		4160D4271E485A6500AF2ED6 /* Marker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Marker.swift; sourceTree = "<group>"; };
-		4160D4291E492E8E00AF2ED6 /* StatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
 		4160D42B1E49422F00AF2ED6 /* pHFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pHFunction.swift; sourceTree = "<group>"; };
 		418F2D621E5D60E900405384 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		418F2D641E5D69BF00405384 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -50,7 +48,7 @@
 		4160D4021E47F70400AF2ED6 = {
 			isa = PBXGroup;
 			children = (
-				4160D40D1E47F70400AF2ED6 /* iDerma */,
+				4160D40D1E47F70400AF2ED6 /* iDerm */,
 				4160D40C1E47F70400AF2ED6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -58,12 +56,12 @@
 		4160D40C1E47F70400AF2ED6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4160D40B1E47F70400AF2ED6 /* iDerma.app */,
+				4160D40B1E47F70400AF2ED6 /* iDerm.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		4160D40D1E47F70400AF2ED6 /* iDerma */ = {
+		4160D40D1E47F70400AF2ED6 /* iDerm */ = {
 			isa = PBXGroup;
 			children = (
 				4160D40E1E47F70400AF2ED6 /* AppDelegate.swift */,
@@ -77,18 +75,17 @@
 				418F2D621E5D60E900405384 /* Assets.xcassets */,
 				4160D41D1E47F70400AF2ED6 /* Info.plist */,
 				4160D4151E47F70400AF2ED6 /* Custom_White_Balance.xcdatamodeld */,
-				4160D4291E492E8E00AF2ED6 /* StatsViewController.swift */,
 			);
-			name = iDerma;
+			name = iDerm;
 			path = "Custom White Balance";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4160D40A1E47F70400AF2ED6 /* iDerma */ = {
+		4160D40A1E47F70400AF2ED6 /* iDerm */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4160D4201E47F70400AF2ED6 /* Build configuration list for PBXNativeTarget "iDerma" */;
+			buildConfigurationList = 4160D4201E47F70400AF2ED6 /* Build configuration list for PBXNativeTarget "iDerm" */;
 			buildPhases = (
 				4160D4071E47F70400AF2ED6 /* Sources */,
 				4160D4081E47F70400AF2ED6 /* Frameworks */,
@@ -98,9 +95,9 @@
 			);
 			dependencies = (
 			);
-			name = iDerma;
+			name = iDerm;
 			productName = "Custom White Balance";
-			productReference = 4160D40B1E47F70400AF2ED6 /* iDerma.app */;
+			productReference = 4160D40B1E47F70400AF2ED6 /* iDerm.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -120,7 +117,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 4160D4061E47F70400AF2ED6 /* Build configuration list for PBXProject "iDerma" */;
+			buildConfigurationList = 4160D4061E47F70400AF2ED6 /* Build configuration list for PBXProject "iDerm" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -133,7 +130,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4160D40A1E47F70400AF2ED6 /* iDerma */,
+				4160D40A1E47F70400AF2ED6 /* iDerm */,
 			);
 		};
 /* End PBXProject section */
@@ -161,7 +158,6 @@
 				4160D4241E47FC7800AF2ED6 /* SelectButton.swift in Sources */,
 				4160D4261E48453500AF2ED6 /* ImageViewController.swift in Sources */,
 				4160D4111E47F70400AF2ED6 /* InitialViewController.swift in Sources */,
-				4160D42A1E492E8E00AF2ED6 /* StatsViewController.swift in Sources */,
 				4160D40F1E47F70400AF2ED6 /* AppDelegate.swift in Sources */,
 				4160D4281E485A6500AF2ED6 /* Marker.swift in Sources */,
 			);
@@ -280,7 +276,7 @@
 				INFOPLIST_FILE = "Custom White Balance/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.AliSiddiqui.iDerma;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.AliSiddiqui.iDerm;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -294,7 +290,7 @@
 				INFOPLIST_FILE = "Custom White Balance/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.AliSiddiqui.iDerma;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.AliSiddiqui.iDerm;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -303,7 +299,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4160D4061E47F70400AF2ED6 /* Build configuration list for PBXProject "iDerma" */ = {
+		4160D4061E47F70400AF2ED6 /* Build configuration list for PBXProject "iDerm" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4160D41E1E47F70400AF2ED6 /* Debug */,
@@ -312,7 +308,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4160D4201E47F70400AF2ED6 /* Build configuration list for PBXNativeTarget "iDerma" */ = {
+		4160D4201E47F70400AF2ED6 /* Build configuration list for PBXNativeTarget "iDerm" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4160D4211E47F70400AF2ED6 /* Debug */,

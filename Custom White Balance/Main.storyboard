@@ -13,7 +13,7 @@
         <!--Initial View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="InitialViewController" customModule="iDerma" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="InitialViewController" customModule="iDerm" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -23,9 +23,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background2" translatesAutoresizingMaskIntoConstraints="NO" id="Ogv-D2-N3i">
-                                <rect key="frame" x="0.0" y="0.0" width="374" height="666"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1QC-V1-YTa" customClass="SelectButton" customModule="iDerma" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1QC-V1-YTa" customClass="SelectButton" customModule="iDerm" customModuleProvider="target">
                                 <rect key="frame" x="30" y="547" width="315" height="60"/>
                                 <color key="backgroundColor" red="0.71764705882352942" green="0.49803921568627452" blue="0.5490196078431373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -40,7 +40,7 @@
                                     <segue destination="M86-06-EMQ" kind="show" identifier="Edit Image" id="zKG-xQ-7P1"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jfB-KP-zek" customClass="SelectButton" customModule="iDerma" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jfB-KP-zek" customClass="SelectButton" customModule="iDerm" customModuleProvider="target">
                                 <rect key="frame" x="30" y="467" width="315" height="60"/>
                                 <color key="backgroundColor" red="0.71764705882352942" green="0.49803921568627452" blue="0.5490196078431373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -54,8 +54,8 @@
                                     <action selector="takePhoto:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gHe-zK-6D2"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="iDerma" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OlU-mP-fh1">
-                                <rect key="frame" x="85" y="154" width="205" height="120"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="iDerm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OlU-mP-fh1">
+                                <rect key="frame" x="102" y="154" width="172.5" height="120"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="120" id="Eb1-82-U2g"/>
                                 </constraints>
@@ -89,7 +89,7 @@
         <!--Long Press for Sensor-->
         <scene sceneID="VIk-iz-LHb">
             <objects>
-                <viewController title="Long Press for Sensor" id="M86-06-EMQ" customClass="ImageViewController" customModule="iDerma" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Long Press for Sensor" id="M86-06-EMQ" customClass="ImageViewController" customModule="iDerm" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ArZ-t8-s5k"/>
                         <viewControllerLayoutGuide type="bottom" id="Dbq-Wt-wze"/>
@@ -117,7 +117,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="345" height="430"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="jji-pI-dNt">
-                                                <rect key="frame" x="76" y="28" width="193" height="20.5"/>
+                                                <rect key="frame" x="76.5" y="28" width="193" height="20.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Average Intensity: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cSW-fp-X7K">
                                                         <rect key="frame" x="0.0" y="0.0" width="141" height="20.5"/>
