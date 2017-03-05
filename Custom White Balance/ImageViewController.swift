@@ -13,6 +13,7 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var holderView: UIView!
+    var topOfHolderView: CGFloat = 0
     var imageSelected = UIImage()
     @IBOutlet weak var toolbar: UIToolbar!
     var resultsShowing = false
@@ -43,6 +44,7 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
         
         updateZoom(forSize: view.bounds.size)
         setGestureRecognizers()
+        topOfHolderView = holderView.frame.minY
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -143,7 +145,7 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
         if !resultsShowing {
             
             UIView.animate(withDuration: 0.5) {
-                self.holderView.frame.origin.y = self.view.frame.origin.y + 194
+                self.holderView.frame.origin.y = self.topOfHolderView - 85
                 self.holderView.isHidden = false
                 
                 self.resultsShowing = true
