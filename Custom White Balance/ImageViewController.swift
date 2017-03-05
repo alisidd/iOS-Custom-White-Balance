@@ -79,6 +79,8 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Results", style: .done, target: self, action: #selector(getStats))
         self.navigationItem.rightBarButtonItem?.title = "Results"
+        self.navigationItem.rightBarButtonItem?.isEnabled = false
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
     }
     
     func makeMarker(forColor color: UIColor, withType type: String, atPos pos: CGPoint) {
@@ -118,6 +120,7 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
             if markers.count == 4 && idealMarker == nil {
                 self.makeMarker(forColor: .white, withType: "red", atPos: recognizer.location(in: imageView))
                 navigationItem.title = ""
+                self.navigationItem.rightBarButtonItem?.isEnabled = true
             } else if markers.count < 4 {
                 self.makeMarker(forColor: .red, withType: "red", atPos: recognizer.location(in: imageView))
                 if markers.count == 4 {
@@ -131,11 +134,7 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
     // MARK: - Navigation
      
     func getStats() {
-        if idealMarker == nil {
-            alertUser(withMessage: "You need to add a background marker")
-        } else if markers.count != 4 {
-            alertUser(withMessage: "You need to add \(4 - markers.count) more marker\(markers.count < 3 ? "s" : "")")
-        } else if !resultsShowing {
+        if !resultsShowing {
             
             UIView.animate(withDuration: 0.5) {
                 self.statsView.frame.origin.y = self.view.frame.origin.y + 194
@@ -188,8 +187,7 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
     
     func askForFunction() {
         let alertController = UIAlertController(title: "pH Function", message: "Please enter the function:", preferredStyle: .alert)
-        alertController.view.tintColor = UIColor(red: 1, green: 147/255, blue: 0, alpha: 1)
-        
+        alertController.view.tintColor = UIColor(red: 183/255, green: 127/255, blue: 140/255, alpha: 1)
         
         let confirmAction = UIAlertAction(title: "Confirm", style: .default) { _ in
             if let fetchedFunction = alertController.textFields?[0].text, !fetchedFunction.isEmpty {
@@ -199,7 +197,9 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
             }
         }
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            self.getStats()
+        }
         
         alertController.addTextField { (textField) in
             if let functionAlreadySet = UserDefaults.standard.string(forKey: "pHFunction") {
@@ -214,8 +214,8 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
     }
     
     func alertUser(withMessage customMessage: String) {
-        let alert = UIAlertController(title: "Incomplete Markers", message: customMessage, preferredStyle: .alert)
-        alert.view.tintColor = UIColor(red: 1, green: 147/255, blue: 0, alpha: 1)
+        let alert = UIAlertController(title: "Incomplete Sensors", message: customMessage, preferredStyle: .alert)
+        alert.view.tintColor = UIColor(red: 183/255, green: 127/255, blue: 140/255, alpha: 1)
         
         let action = UIAlertAction(title: "OK", style: .default, handler: nil)
         alert.addAction(action)

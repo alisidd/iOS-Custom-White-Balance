@@ -21,7 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4160D40B1E47F70400AF2ED6 /* Custom White Balance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Custom White Balance.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4160D40B1E47F70400AF2ED6 /* iDerma.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iDerma.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4160D40E1E47F70400AF2ED6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4160D4101E47F70400AF2ED6 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		4160D4161E47F70400AF2ED6 /* Custom_White_Balance.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Custom_White_Balance.xcdatamodel; sourceTree = "<group>"; };
@@ -50,7 +50,7 @@
 		4160D4021E47F70400AF2ED6 = {
 			isa = PBXGroup;
 			children = (
-				4160D40D1E47F70400AF2ED6 /* Custom White Balance */,
+				4160D40D1E47F70400AF2ED6 /* iDerma */,
 				4160D40C1E47F70400AF2ED6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -58,12 +58,12 @@
 		4160D40C1E47F70400AF2ED6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4160D40B1E47F70400AF2ED6 /* Custom White Balance.app */,
+				4160D40B1E47F70400AF2ED6 /* iDerma.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		4160D40D1E47F70400AF2ED6 /* Custom White Balance */ = {
+		4160D40D1E47F70400AF2ED6 /* iDerma */ = {
 			isa = PBXGroup;
 			children = (
 				4160D40E1E47F70400AF2ED6 /* AppDelegate.swift */,
@@ -79,15 +79,16 @@
 				4160D4151E47F70400AF2ED6 /* Custom_White_Balance.xcdatamodeld */,
 				4160D4291E492E8E00AF2ED6 /* StatsViewController.swift */,
 			);
+			name = iDerma;
 			path = "Custom White Balance";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4160D40A1E47F70400AF2ED6 /* Custom White Balance */ = {
+		4160D40A1E47F70400AF2ED6 /* iDerma */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4160D4201E47F70400AF2ED6 /* Build configuration list for PBXNativeTarget "Custom White Balance" */;
+			buildConfigurationList = 4160D4201E47F70400AF2ED6 /* Build configuration list for PBXNativeTarget "iDerma" */;
 			buildPhases = (
 				4160D4071E47F70400AF2ED6 /* Sources */,
 				4160D4081E47F70400AF2ED6 /* Frameworks */,
@@ -97,9 +98,9 @@
 			);
 			dependencies = (
 			);
-			name = "Custom White Balance";
+			name = iDerma;
 			productName = "Custom White Balance";
-			productReference = 4160D40B1E47F70400AF2ED6 /* Custom White Balance.app */;
+			productReference = 4160D40B1E47F70400AF2ED6 /* iDerma.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -119,7 +120,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 4160D4061E47F70400AF2ED6 /* Build configuration list for PBXProject "Custom White Balance" */;
+			buildConfigurationList = 4160D4061E47F70400AF2ED6 /* Build configuration list for PBXProject "iDerma" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -132,7 +133,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4160D40A1E47F70400AF2ED6 /* Custom White Balance */,
+				4160D40A1E47F70400AF2ED6 /* iDerma */,
 			);
 		};
 /* End PBXProject section */
@@ -279,7 +280,7 @@
 				INFOPLIST_FILE = "Custom White Balance/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.AliSiddiqui.Custom-White-Balance";
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.AliSiddiqui.iDerma;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -293,7 +294,7 @@
 				INFOPLIST_FILE = "Custom White Balance/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.AliSiddiqui.Custom-White-Balance";
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.AliSiddiqui.iDerma;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -302,7 +303,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4160D4061E47F70400AF2ED6 /* Build configuration list for PBXProject "Custom White Balance" */ = {
+		4160D4061E47F70400AF2ED6 /* Build configuration list for PBXProject "iDerma" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4160D41E1E47F70400AF2ED6 /* Debug */,
@@ -311,7 +312,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4160D4201E47F70400AF2ED6 /* Build configuration list for PBXNativeTarget "Custom White Balance" */ = {
+		4160D4201E47F70400AF2ED6 /* Build configuration list for PBXNativeTarget "iDerma" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4160D4211E47F70400AF2ED6 /* Debug */,

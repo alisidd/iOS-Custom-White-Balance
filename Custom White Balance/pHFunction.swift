@@ -17,6 +17,7 @@ class pHFunction {
     
     func evaluateFunction(forFunction function: String) {
         let function = function.replacingOccurrences(of: "x", with: "resultColor", options: .literal, range: nil)
+        
         let color = ["resultColor": resultColor]
                 
         pH = NSExpression(format: function).expressionValue(with: color, context: nil) as! Double

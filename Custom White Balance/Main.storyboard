@@ -32,7 +32,7 @@
                                     <constraint firstAttribute="height" constant="60" id="Hqp-vT-hm8"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <state key="normal" title="Choose Image">
+                                <state key="normal" title="Choose Photo">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -54,13 +54,24 @@
                                     <action selector="takePhoto:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gHe-zK-6D2"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="iDerma" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OlU-mP-fh1">
+                                <rect key="frame" x="85" y="154" width="205" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="Eb1-82-U2g"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Zapfino" family="Zapfino" pointSize="46"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="jfB-KP-zek" secondAttribute="trailing" constant="30" id="78J-4v-77l"/>
+                            <constraint firstItem="OlU-mP-fh1" firstAttribute="centerX" secondItem="jfB-KP-zek" secondAttribute="centerX" id="9o7-uG-aZN"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="1QC-V1-YTa" secondAttribute="bottom" constant="60" id="RHV-Dk-zNg"/>
                             <constraint firstItem="Ogv-D2-N3i" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="abd-F7-KHR"/>
                             <constraint firstAttribute="trailing" secondItem="1QC-V1-YTa" secondAttribute="trailing" constant="30" id="acx-0y-lTm"/>
+                            <constraint firstItem="OlU-mP-fh1" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="90" id="b6y-gc-erB"/>
                             <constraint firstItem="Ogv-D2-N3i" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="c8M-wO-cSo"/>
                             <constraint firstItem="Ogv-D2-N3i" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="hoX-gm-bsa"/>
                             <constraint firstItem="1QC-V1-YTa" firstAttribute="top" secondItem="jfB-KP-zek" secondAttribute="bottom" constant="20" id="idm-RP-pgf"/>

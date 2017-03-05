@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4160D40A1E47F70400AF2ED6"
-               BuildableName = "Custom White Balance.app"
-               BlueprintName = "Custom White Balance"
-               ReferencedContainer = "container:Custom White Balance.xcodeproj">
+               BuildableName = "iDerma.app"
+               BlueprintName = "iDerma"
+               ReferencedContainer = "container:iDerma.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4160D40A1E47F70400AF2ED6"
-            BuildableName = "Custom White Balance.app"
-            BlueprintName = "Custom White Balance"
-            ReferencedContainer = "container:Custom White Balance.xcodeproj">
+            BuildableName = "iDerma.app"
+            BlueprintName = "iDerma"
+            ReferencedContainer = "container:iDerma.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -56,9 +56,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4160D40A1E47F70400AF2ED6"
-            BuildableName = "Custom White Balance.app"
-            BlueprintName = "Custom White Balance"
-            ReferencedContainer = "container:Custom White Balance.xcodeproj">
+            BuildableName = "iDerma.app"
+            BlueprintName = "iDerma"
+            ReferencedContainer = "container:iDerma.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -75,9 +75,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4160D40A1E47F70400AF2ED6"
-            BuildableName = "Custom White Balance.app"
-            BlueprintName = "Custom White Balance"
-            ReferencedContainer = "container:Custom White Balance.xcodeproj">
+            BuildableName = "iDerma.app"
+            BlueprintName = "iDerma"
+            ReferencedContainer = "container:iDerma.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
