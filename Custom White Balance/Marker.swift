@@ -62,7 +62,11 @@ class Marker: UIView, UIGestureRecognizerDelegate {
         shapeLayer.strokeColor = color.cgColor
     }
     
-    func colorOfCenter() -> (red: CGFloat, blue: CGFloat) {
+    func getCenter() -> CGPoint {
+        return center
+    }
+    
+    func colorOfCenter() -> (red: CGFloat, green: CGFloat, blue: CGFloat) {
         let imageView = superview as! UIImageView
         
         var pixel : [UInt8] = [0, 0, 0, 0]
@@ -73,7 +77,7 @@ class Marker: UIView, UIGestureRecognizerDelegate {
         context!.translateBy(x: -(center.x + 1), y: -(center.y + 1))
         imageView.layer.render(in: context!)
         
-        return (red: CGFloat(pixel[0]), blue: CGFloat(pixel[2]))
+        return (red: CGFloat(pixel[0]), green: CGFloat(pixel[1]), blue: CGFloat(pixel[2]))
     }
 
 }

@@ -12,7 +12,7 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var statsView: UIView!
+    @IBOutlet weak var holderView: UIView!
     var imageSelected = UIImage()
     @IBOutlet weak var toolbar: UIToolbar!
     var resultsShowing = false
@@ -20,21 +20,26 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
     var markers = [Marker]()
     var idealMarker: (marker: Marker?, type: String)?
     
+    @IBOutlet weak var averageIntensity: UILabel!
+
     @IBOutlet weak var firstpHValue: UILabel!
     @IBOutlet weak var secondpHValue: UILabel!
     @IBOutlet weak var thirdpHValue: UILabel!
     @IBOutlet weak var fourthpHValue: UILabel!
-    @IBOutlet weak var averageIntensity: UILabel!
-
-
+    
+    @IBOutlet weak var firstSensorView: UIView!
+    @IBOutlet weak var secondSensorView: UIView!
+    @IBOutlet weak var thirdSensorView: UIView!
+    @IBOutlet weak var fourthSensorView: UIView!
+    
     var function = pHFunction()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        statsView.isHidden = true
+        holderView.isHidden = true
         setImage()
         setScrollView()
-        setStatsView()
+        setHolderView()
         
         updateZoom(forSize: view.bounds.size)
         setGestureRecognizers()
@@ -51,16 +56,17 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
         scrollView.contentSize = imageView.image!.size
     }
     
-    func setStatsView() {
+    func setHolderView() {
         let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = statsView.bounds
+        blurEffectView.frame = holderView.bounds
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 
-        statsView.insertSubview(blurEffectView, at: 0)
+        holderView.insertSubview(blurEffectView, at: 0)
+        print("Amount: \(holderView.subviews.count)")
         
-        statsView.layer.cornerRadius = 10
-        statsView.clipsToBounds = true
+        holderView.layer.cornerRadius = 10
+        holderView.clipsToBounds = true
     }
     
     func setImage() {
@@ -137,8 +143,8 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
         if !resultsShowing {
             
             UIView.animate(withDuration: 0.5) {
-                self.statsView.frame.origin.y = self.view.frame.origin.y + 194
-                self.statsView.isHidden = false
+                self.holderView.frame.origin.y = self.view.frame.origin.y + 194
+                self.holderView.isHidden = false
                 
                 self.resultsShowing = true
                 self.askForFunction()
@@ -146,7 +152,7 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
             navigationItem.rightBarButtonItem?.title = "Done"
         } else {
             UIView.animate(withDuration: 0.5) {
-                self.statsView.frame.origin.y = self.view.frame.origin.y + self.view.frame.size.height
+                self.holderView.frame.origin.y = self.view.frame.origin.y + self.view.frame.size.height
                 
                 self.resultsShowing = false
             }
@@ -155,34 +161,73 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
     }
     
     func setResults() {
-        var colorIntensities = [(red: CGFloat, blue: CGFloat)]()
+        var colorIntensities = [(red: CGFloat, green: CGFloat, blue: CGFloat)]()
+        reorderMarkers()
         
         for marker in markers {
             let colorsFound = marker.colorOfCenter()
-            colorIntensities.append(red: colorsFound.red, blue: colorsFound.blue)
+            colorIntensities.append(red: colorsFound.red, green: colorsFound.green, blue: colorsFound.blue)
         }
         
         let fetchedFunction = UserDefaults.standard.string(forKey: "pHFunction")!
         
+        setValues(forFunction: fetchedFunction, withColorIntensities: colorIntensities)
+    }
+    
+    func setValues(forFunction fetchedFunction: String, withColorIntensities colorIntensities: [(red: CGFloat, green: CGFloat, blue: CGFloat)]) {
         function.setResult(forColors: [colorIntensities[0]], withIdeal: (idealMarker!.marker!.colorOfCenter().red, idealMarker!.type), forFunction: fetchedFunction)
         
         firstpHValue.text = String(describing: function.pH)
+        firstSensorView.backgroundColor = UIColor(red: colorIntensities[0].red / 255, green: colorIntensities[0].green / 255, blue: colorIntensities[0].blue / 255, alpha: 1)
         
         function.setResult(forColors: [colorIntensities[1]], withIdeal: (idealMarker!.marker!.colorOfCenter().red, idealMarker!.type), forFunction: fetchedFunction)
         
         secondpHValue.text = String(describing: function.pH)
+        secondSensorView.backgroundColor = UIColor(red: colorIntensities[1].red / 255, green: colorIntensities[1].green / 255, blue: colorIntensities[1].blue / 255, alpha: 1)
         
         function.setResult(forColors: [colorIntensities[2]], withIdeal: (idealMarker!.marker!.colorOfCenter().red, idealMarker!.type), forFunction: fetchedFunction)
         
         thirdpHValue.text = String(describing: function.pH)
+        thirdSensorView.backgroundColor = UIColor(red: colorIntensities[2].red / 255, green: colorIntensities[2].green / 255, blue: colorIntensities[2].blue / 255, alpha: 1)
         
         function.setResult(forColors: [colorIntensities[3]], withIdeal: (idealMarker!.marker!.colorOfCenter().red, idealMarker!.type), forFunction: fetchedFunction)
         
         fourthpHValue.text = String(describing: function.pH)
+        fourthSensorView.backgroundColor = UIColor(red: colorIntensities[3].red / 255, green: colorIntensities[3].green / 255, blue: colorIntensities[3].blue / 255, alpha: 1)
         
         function.setResult(forColors: colorIntensities, withIdeal: (idealMarker!.marker!.colorOfCenter().red, idealMarker!.type), forFunction: fetchedFunction)
         
         averageIntensity.text = String(describing: function.resultColor)
+    }
+    
+    func reorderMarkers() {
+        var organizedMarkers = [markers[0]]
+        
+        for marker in markers {
+            if marker != markers[0] {
+                if marker.getCenter().y < organizedMarkers[0].getCenter().y {
+                    organizedMarkers.insert(marker, at: 0)
+                } else {
+                    organizedMarkers.append(marker)
+                }
+            }
+        }
+        
+        var topTwoMarkers = organizedMarkers[0...1]
+        var bottomTwoMarkers = organizedMarkers[2...3]
+        
+        if topTwoMarkers[0].getCenter().x < topTwoMarkers[1].getCenter().x {
+            markers = [topTwoMarkers[0], topTwoMarkers[1]]
+        } else {
+            markers = [topTwoMarkers[1], topTwoMarkers[0]]
+        }
+        
+        if bottomTwoMarkers[2].getCenter().x < bottomTwoMarkers[3].getCenter().x {
+            markers.append(contentsOf: [bottomTwoMarkers[2], bottomTwoMarkers[3]])
+        } else {
+            markers.append(contentsOf: [bottomTwoMarkers[3], bottomTwoMarkers[2]])
+        }
+        print("Markers: \(markers)")
     }
     
     func askForFunction() {

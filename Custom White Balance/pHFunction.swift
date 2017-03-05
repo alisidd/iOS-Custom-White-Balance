@@ -23,7 +23,7 @@ class pHFunction {
         pH = NSExpression(format: function).expressionValue(with: color, context: nil) as! Double
     }
     
-    func setResult(forColors colors: [(red: CGFloat, blue: CGFloat)], withIdeal idealColor: (colorValue: CGFloat, type: String), forFunction function: String) {
+    func setResult(forColors colors: [(red: CGFloat, green: CGFloat, blue: CGFloat)], withIdeal idealColor: (colorValue: CGFloat, type: String), forFunction function: String) {
         var sumOfRedColors: CGFloat = 0
         var sumOfBlueColors: CGFloat = 0
         
