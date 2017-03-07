@@ -55,12 +55,20 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="iDerm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OlU-mP-fh1">
-                                <rect key="frame" x="102" y="154" width="172.5" height="120"/>
+                                <rect key="frame" x="101" y="154" width="173" height="120"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="120" id="Eb1-82-U2g"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Zapfino" family="Zapfino" pointSize="46"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uZC-OB-MBZ">
+                                <rect key="frame" x="36" y="616" width="303" height="31"/>
+                                <string key="text">Copyright © 2017 Mohammad Ali Siddiqui and
+Laboratory for innovations in Microengineering (LiME)</string>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -73,11 +81,13 @@
                             <constraint firstAttribute="trailing" secondItem="1QC-V1-YTa" secondAttribute="trailing" constant="30" id="acx-0y-lTm"/>
                             <constraint firstItem="OlU-mP-fh1" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="90" id="b6y-gc-erB"/>
                             <constraint firstItem="Ogv-D2-N3i" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="c8M-wO-cSo"/>
+                            <constraint firstItem="uZC-OB-MBZ" firstAttribute="centerX" secondItem="1QC-V1-YTa" secondAttribute="centerX" id="dtz-Bs-T2m"/>
                             <constraint firstItem="Ogv-D2-N3i" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="hoX-gm-bsa"/>
                             <constraint firstItem="1QC-V1-YTa" firstAttribute="top" secondItem="jfB-KP-zek" secondAttribute="bottom" constant="20" id="idm-RP-pgf"/>
                             <constraint firstItem="jfB-KP-zek" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="30" id="qET-4U-PHC"/>
                             <constraint firstItem="Ogv-D2-N3i" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="rQ0-TG-8AI"/>
                             <constraint firstItem="1QC-V1-YTa" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="30" id="tNx-Hq-x7f"/>
+                            <constraint firstAttribute="bottom" secondItem="uZC-OB-MBZ" secondAttribute="bottom" constant="20" symbolic="YES" id="yvz-31-m3c"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="B4X-4u-MkJ"/>
@@ -255,14 +265,14 @@
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="warning-1" translatesAutoresizingMaskIntoConstraints="NO" id="rIR-wC-qj3">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tick-1" translatesAutoresizingMaskIntoConstraints="NO" id="rIR-wC-qj3">
                                                 <rect key="frame" x="252" y="183.5" width="20" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="20" id="ibh-4o-dDb"/>
                                                     <constraint firstAttribute="height" constant="20" id="lUe-2F-wco"/>
                                                 </constraints>
                                             </imageView>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="warning-1" translatesAutoresizingMaskIntoConstraints="NO" id="mjJ-IV-I5S">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tick-1" translatesAutoresizingMaskIntoConstraints="NO" id="mjJ-IV-I5S">
                                                 <rect key="frame" x="72" y="330" width="20" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="20" id="3HV-Sx-P6z"/>
@@ -338,16 +348,21 @@
                     <connections>
                         <outlet property="averageIntensity" destination="Mts-e0-UfY" id="8SS-YG-Ebz"/>
                         <outlet property="firstSensorView" destination="hNT-hd-kEU" id="pcD-YB-1PH"/>
+                        <outlet property="firstSensorWarningIndicator" destination="2ue-Ue-Pom" id="dgS-oy-SBe"/>
                         <outlet property="firstpHValue" destination="slh-Dd-1ch" id="qMe-nW-aF8"/>
                         <outlet property="fourthSensorView" destination="Ibn-AT-vP6" id="YBH-AI-Moo"/>
+                        <outlet property="fourthSensorWarningIndicator" destination="CDh-81-Wbp" id="GDh-fc-zmC"/>
                         <outlet property="fourthpHValue" destination="uYu-3K-wxX" id="KKx-FR-jU5"/>
                         <outlet property="holderView" destination="8hk-Qy-Ujy" id="jvF-nV-L8L"/>
                         <outlet property="imageView" destination="1yB-v5-gIP" id="NZI-uM-3i1"/>
                         <outlet property="scrollView" destination="7md-P8-aoD" id="BfB-Na-kQL"/>
                         <outlet property="secondSensorView" destination="ci9-Oz-JqQ" id="nh9-X2-lxg"/>
+                        <outlet property="secondSensorWarningIndicator" destination="rIR-wC-qj3" id="mDo-Yn-KBM"/>
                         <outlet property="secondpHValue" destination="ENJ-3O-UBl" id="zsj-vM-xbR"/>
                         <outlet property="thirdSensorView" destination="yNm-2M-1RE" id="eAU-Rm-2hY"/>
+                        <outlet property="thirdSensorWarningIndicator" destination="mjJ-IV-I5S" id="ulY-m2-CdM"/>
                         <outlet property="thirdpHValue" destination="nUk-u5-Cld" id="iof-ur-Jvx"/>
+                        <outlet property="warningMessage" destination="MKq-Mt-S4i" id="lld-nF-GzE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eui-aI-Zgt" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -376,6 +391,5 @@
     <resources>
         <image name="background2" width="1080" height="1920"/>
         <image name="tick-1" width="600" height="556"/>
-        <image name="warning-1" width="2127" height="1896"/>
     </resources>
 </document>

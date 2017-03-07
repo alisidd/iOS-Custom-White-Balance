@@ -33,6 +33,14 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
     @IBOutlet weak var thirdSensorView: UIView!
     @IBOutlet weak var fourthSensorView: UIView!
     
+    @IBOutlet weak var firstSensorWarningIndicator: UIImageView!
+    @IBOutlet weak var secondSensorWarningIndicator: UIImageView!
+    @IBOutlet weak var thirdSensorWarningIndicator: UIImageView!
+    @IBOutlet weak var fourthSensorWarningIndicator: UIImageView!
+    
+    @IBOutlet weak var warningMessage: UILabel!
+    var totalWarnings = 0
+    
     var function = pHFunction()
 
     override func viewDidLoad() {
@@ -177,29 +185,61 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
     }
     
     func setValues(forFunction fetchedFunction: String, withColorIntensities colorIntensities: [(red: CGFloat, green: CGFloat, blue: CGFloat)]) {
+        totalWarnings = 0
+        
         function.setResult(forColors: [colorIntensities[0]], withIdeal: (idealMarker!.marker!.colorOfCenter().red, idealMarker!.type), forFunction: fetchedFunction)
         
         firstpHValue.text = String(describing: function.pH)
+        setWarningIndicator(withValue: function.pH, forSensorNum: 1)
         firstSensorView.backgroundColor = UIColor(red: colorIntensities[0].red / 255, green: colorIntensities[0].green / 255, blue: colorIntensities[0].blue / 255, alpha: 1)
         
         function.setResult(forColors: [colorIntensities[1]], withIdeal: (idealMarker!.marker!.colorOfCenter().red, idealMarker!.type), forFunction: fetchedFunction)
         
         secondpHValue.text = String(describing: function.pH)
+        setWarningIndicator(withValue: function.pH, forSensorNum: 2)
         secondSensorView.backgroundColor = UIColor(red: colorIntensities[1].red / 255, green: colorIntensities[1].green / 255, blue: colorIntensities[1].blue / 255, alpha: 1)
         
         function.setResult(forColors: [colorIntensities[2]], withIdeal: (idealMarker!.marker!.colorOfCenter().red, idealMarker!.type), forFunction: fetchedFunction)
         
         thirdpHValue.text = String(describing: function.pH)
+        setWarningIndicator(withValue: function.pH, forSensorNum: 3)
         thirdSensorView.backgroundColor = UIColor(red: colorIntensities[2].red / 255, green: colorIntensities[2].green / 255, blue: colorIntensities[2].blue / 255, alpha: 1)
         
         function.setResult(forColors: [colorIntensities[3]], withIdeal: (idealMarker!.marker!.colorOfCenter().red, idealMarker!.type), forFunction: fetchedFunction)
         
         fourthpHValue.text = String(describing: function.pH)
+        setWarningIndicator(withValue: function.pH, forSensorNum: 4)
         fourthSensorView.backgroundColor = UIColor(red: colorIntensities[3].red / 255, green: colorIntensities[3].green / 255, blue: colorIntensities[3].blue / 255, alpha: 1)
         
         function.setResult(forColors: colorIntensities, withIdeal: (idealMarker!.marker!.colorOfCenter().red, idealMarker!.type), forFunction: fetchedFunction)
         
         averageIntensity.text = String(describing: function.resultColor)
+        if totalWarnings > 0 {
+            warningMessage.text = String(describing: totalWarnings) + " possible infection" + (totalWarnings == 1 ? " " : "s ") + "detected"
+        } else {
+            warningMessage.text = "No infections detected"
+        }
+    }
+    
+    func setWarningIndicator(withValue value: Double, forSensorNum sensor: Int) {
+        if value < 6.8 || value > 7.5 {
+            totalWarnings += 1
+            switch sensor {
+            case 1: firstSensorWarningIndicator.image  = #imageLiteral(resourceName: "warning-1")
+            case 2: secondSensorWarningIndicator.image = #imageLiteral(resourceName: "warning-1")
+            case 3: thirdSensorWarningIndicator.image  = #imageLiteral(resourceName: "warning-1")
+            case 4: fourthSensorWarningIndicator.image = #imageLiteral(resourceName: "warning-1")
+            default: break
+            }
+        } else {
+            switch sensor {
+            case 1: firstSensorWarningIndicator.image  = #imageLiteral(resourceName: "tick-1")
+            case 2: secondSensorWarningIndicator.image = #imageLiteral(resourceName: "tick-1")
+            case 3: thirdSensorWarningIndicator.image  = #imageLiteral(resourceName: "tick-1")
+            case 4: fourthSensorWarningIndicator.image = #imageLiteral(resourceName: "tick-1")
+            default: break
+            }
+        }
     }
     
     func reorderMarkers() {
