@@ -6,6 +6,15 @@
 //  Copyright © 2017 Ali Siddiqui. All rights reserved.
 //
 
+//Function taken from: http://stackoverflow.com/questions/27338573/rounding-a-double-value-to-x-number-of-decimal-places-in-swift
+extension Double {
+    /// Rounds the double to decimal places value
+    func roundTo(places:Int) -> Double {
+        let divisor = pow(10.0, Double(places))
+        return (self * divisor).rounded() / divisor
+    }
+}
+
 import Foundation
 import UIKit
 
@@ -21,6 +30,7 @@ class pHFunction {
         let color = ["resultColor": resultColor]
                 
         pH = NSExpression(format: function).expressionValue(with: color, context: nil) as! Double
+        pH = pH.roundTo(places: 1)
     }
     
     func setResult(forColors colors: [(red: CGFloat, green: CGFloat, blue: CGFloat)], withIdeal idealColor: (colorValue: CGFloat, type: String), forFunction function: String) {
@@ -38,7 +48,6 @@ class pHFunction {
         
         averageRedColor = sumOfRedColors / CGFloat(colors.count)
         averageBlueColor = sumOfBlueColors / CGFloat(colors.count)
-        print(colors.count)
         
         if idealColor.type == "red" {
             resultColor = idealColor.colorValue - averageRedColor

@@ -73,7 +73,6 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 
         holderView.insertSubview(blurEffectView, at: 0)
-        print("Amount: \(holderView.subviews.count)")
         
         holderView.layer.cornerRadius = 10
         holderView.clipsToBounds = true
@@ -151,7 +150,6 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
      
     func getStats() {
         if !resultsShowing {
-            
             UIView.animate(withDuration: 0.5) {
                 self.holderView.frame.origin.y = self.topOfHolderView - 85
                 self.holderView.isHidden = false
@@ -168,6 +166,34 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
             }
             navigationItem.rightBarButtonItem?.title = "Results"
         }
+    }
+    
+    func askForFunction() {
+        let alertController = UIAlertController(title: "pH Function", message: "Please enter the function:", preferredStyle: .alert)
+        alertController.view.tintColor = UIColor(red: 183/255, green: 127/255, blue: 140/255, alpha: 1)
+        
+        let confirmAction = UIAlertAction(title: "Confirm", style: .default) { _ in
+            if let fetchedFunction = alertController.textFields?[0].text, !fetchedFunction.isEmpty {
+                UserDefaults.standard.set(fetchedFunction, forKey: "pHFunction")
+                UserDefaults.standard.synchronize()
+                self.setResults()
+            }
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            self.getStats()
+        }
+        
+        alertController.addTextField { (textField) in
+            if let functionAlreadySet = UserDefaults.standard.string(forKey: "pHFunction") {
+                textField.text = functionAlreadySet
+            }
+        }
+        
+        alertController.addAction(confirmAction)
+        alertController.addAction(cancelAction)
+        
+        self.present(alertController, animated: true, completion: nil)
     }
     
     func setResults() {
@@ -215,7 +241,7 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
         
         averageIntensity.text = String(describing: function.resultColor)
         if totalWarnings > 0 {
-            warningMessage.text = String(describing: totalWarnings) + " possible infection" + (totalWarnings == 1 ? " " : "s ") + "detected"
+            warningMessage.text = "There's a possibility of infection, see your doctor immediately"
         } else {
             warningMessage.text = "No infections detected"
         }
@@ -243,14 +269,18 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
     }
     
     func reorderMarkers() {
+        print("Reordering")
         var organizedMarkers = [markers[0]]
         
         for marker in markers {
             if marker != markers[0] {
-                if marker.getCenter().y < organizedMarkers[0].getCenter().y {
-                    organizedMarkers.insert(marker, at: 0)
-                } else {
-                    organizedMarkers.append(marker)
+                for i in 0..<organizedMarkers.count {
+                    if marker.getCenter().y < organizedMarkers[i].getCenter().y {
+                        organizedMarkers.insert(marker, at: i)
+                        break
+                    } else if i == organizedMarkers.count - 1 {
+                        organizedMarkers.append(marker)
+                    }
                 }
             }
         }
@@ -269,35 +299,6 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
         } else {
             markers.append(contentsOf: [bottomTwoMarkers[3], bottomTwoMarkers[2]])
         }
-        print("Markers: \(markers)")
-    }
-    
-    func askForFunction() {
-        let alertController = UIAlertController(title: "pH Function", message: "Please enter the function:", preferredStyle: .alert)
-        alertController.view.tintColor = UIColor(red: 183/255, green: 127/255, blue: 140/255, alpha: 1)
-        
-        let confirmAction = UIAlertAction(title: "Confirm", style: .default) { _ in
-            if let fetchedFunction = alertController.textFields?[0].text, !fetchedFunction.isEmpty {
-                UserDefaults.standard.set(fetchedFunction, forKey: "pHFunction")
-                UserDefaults.standard.synchronize()
-                self.setResults()
-            }
-        }
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
-            self.getStats()
-        }
-        
-        alertController.addTextField { (textField) in
-            if let functionAlreadySet = UserDefaults.standard.string(forKey: "pHFunction") {
-                textField.text = functionAlreadySet
-            }
-        }
-        
-        alertController.addAction(confirmAction)
-        alertController.addAction(cancelAction)
-        
-        self.present(alertController, animated: true, completion: nil)
     }
     
     func alertUser(withMessage customMessage: String) {
