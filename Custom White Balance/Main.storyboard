@@ -127,24 +127,24 @@ Laboratory for innovations in Microengineering (LiME)</string>
                                         <rect key="frame" x="0.0" y="0.0" width="345" height="430"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="jji-pI-dNt">
-                                                <rect key="frame" x="76" y="28" width="193" height="20.5"/>
+                                                <rect key="frame" x="72" y="28" width="203" height="21"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Average Intensity: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cSW-fp-X7K">
-                                                        <rect key="frame" x="0.0" y="0.0" width="141" height="20.5"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="148.5" height="21"/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Value" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mts-e0-UfY">
-                                                        <rect key="frame" x="151" y="0.0" width="42" height="20.5"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <rect key="frame" x="158.5" y="0.0" width="44.5" height="21"/>
+                                                        <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="18"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hNT-hd-kEU">
-                                                <rect key="frame" x="40" y="88.5" width="85" height="85"/>
+                                                <rect key="frame" x="40" y="89" width="85" height="85"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="0nS-PY-htK">
                                                         <rect key="frame" x="5" y="32" width="75" height="21"/>
@@ -173,7 +173,7 @@ Laboratory for innovations in Microengineering (LiME)</string>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ci9-Oz-JqQ">
-                                                <rect key="frame" x="220" y="88.5" width="85" height="85"/>
+                                                <rect key="frame" x="220" y="89" width="85" height="85"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="toN-aO-fDf">
                                                         <rect key="frame" x="5" y="32" width="75" height="21"/>
@@ -260,13 +260,13 @@ Laboratory for innovations in Microengineering (LiME)</string>
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No infection detected" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MKq-Mt-S4i">
-                                                <rect key="frame" x="10" y="400" width="325" height="20.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <rect key="frame" x="10" y="404.5" width="325" height="16"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tick-1" translatesAutoresizingMaskIntoConstraints="NO" id="rIR-wC-qj3">
-                                                <rect key="frame" x="252" y="183.5" width="20" height="20"/>
+                                                <rect key="frame" x="252" y="184" width="20" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="20" id="ibh-4o-dDb"/>
                                                     <constraint firstAttribute="height" constant="20" id="lUe-2F-wco"/>
@@ -287,7 +287,7 @@ Laboratory for innovations in Microengineering (LiME)</string>
                                                 </constraints>
                                             </imageView>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tick-1" translatesAutoresizingMaskIntoConstraints="NO" id="2ue-Ue-Pom">
-                                                <rect key="frame" x="72" y="183.5" width="20" height="20"/>
+                                                <rect key="frame" x="72" y="184" width="20" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="20" id="Iqt-RD-ffJ"/>
                                                     <constraint firstAttribute="width" constant="20" id="kXz-TM-6vp"/>

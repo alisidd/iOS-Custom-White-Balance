@@ -22,7 +22,7 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
     var idealMarker: (marker: Marker?, type: String)?
     
     @IBOutlet weak var averageIntensity: UILabel!
-
+    
     @IBOutlet weak var firstpHValue: UILabel!
     @IBOutlet weak var secondpHValue: UILabel!
     @IBOutlet weak var thirdpHValue: UILabel!
@@ -42,7 +42,7 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
     var totalWarnings = 0
     
     var function = pHFunction()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         holderView.isHidden = true
@@ -71,7 +71,7 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = holderView.bounds
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-
+        
         holderView.insertSubview(blurEffectView, at: 0)
         
         holderView.layer.cornerRadius = 10
@@ -147,7 +147,7 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
     }
     
     // MARK: - Navigation
-     
+    
     func getStats() {
         if !resultsShowing {
             UIView.animate(withDuration: 0.5) {
