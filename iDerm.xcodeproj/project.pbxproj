@@ -17,6 +17,7 @@
 		4160D42C1E49423000AF2ED6 /* pHFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4160D42B1E49422F00AF2ED6 /* pHFunction.swift */; };
 		4179292F1E6CCD6100227069 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4179292E1E6CCD6100227069 /* Assets.xcassets */; };
 		418F2D651E5D69BF00405384 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 418F2D641E5D69BF00405384 /* Main.storyboard */; };
+		41D0AB541E94221C0060CDDD /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D0AB531E94221C0060CDDD /* SettingsTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		4160D42B1E49422F00AF2ED6 /* pHFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pHFunction.swift; sourceTree = "<group>"; };
 		4179292E1E6CCD6100227069 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		418F2D641E5D69BF00405384 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		41D0AB531E94221C0060CDDD /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 			children = (
 				4160D40E1E47F70400AF2ED6 /* AppDelegate.swift */,
 				4160D4101E47F70400AF2ED6 /* InitialViewController.swift */,
+				41D0AB531E94221C0060CDDD /* SettingsTableViewController.swift */,
 				4160D4251E48453500AF2ED6 /* ImageViewController.swift */,
 				4160D42B1E49422F00AF2ED6 /* pHFunction.swift */,
 				4160D4271E485A6500AF2ED6 /* Marker.swift */,
@@ -160,6 +163,7 @@
 				4160D4111E47F70400AF2ED6 /* InitialViewController.swift in Sources */,
 				4160D40F1E47F70400AF2ED6 /* AppDelegate.swift in Sources */,
 				4160D4281E485A6500AF2ED6 /* Marker.swift in Sources */,
+				41D0AB541E94221C0060CDDD /* SettingsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,7 +280,7 @@
 				INFOPLIST_FILE = "Custom White Balance/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.AliSiddiqui.iDerm;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.AliSiddiqui.iDermBoth;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -290,7 +294,7 @@
 				INFOPLIST_FILE = "Custom White Balance/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.AliSiddiqui.iDerm;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.AliSiddiqui.iDermBoth;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

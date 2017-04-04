@@ -13,13 +13,16 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var holderView: UIView!
-    var topOfHolderView: CGFloat = 0
     var imageSelected = UIImage()
     @IBOutlet weak var toolbar: UIToolbar!
     var resultsShowing = false
     
     var markers = [Marker]()
-    var idealMarker: (marker: Marker?, type: String)?
+    var idealMarker: Marker?
+    
+    @IBOutlet weak var changeToRedButton: UIButton!
+    @IBOutlet weak var changeToBlueButton: UIButton!
+    
     
     @IBOutlet weak var averageIntensity: UILabel!
     
@@ -52,7 +55,6 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
         
         updateZoom(forSize: view.bounds.size)
         setGestureRecognizers()
-        topOfHolderView = holderView.frame.minY
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -109,7 +111,7 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
     
     func addMarker(forMarker marker: Marker, withType type: String) {
         if marker.color == .white {
-            idealMarker = (marker, type)
+            idealMarker = marker
         } else {
             markers.append(marker)
         }
@@ -151,11 +153,12 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
     func getStats() {
         if !resultsShowing {
             UIView.animate(withDuration: 0.5) {
-                self.holderView.frame.origin.y = self.topOfHolderView - 85
+                print(UIScreen.main.bounds.height)
+                self.holderView.frame.origin.y = UIScreen.main.bounds.height - 10 - self.holderView.frame.height
                 self.holderView.isHidden = false
                 
                 self.resultsShowing = true
-                self.askForFunction()
+                self.setResults(forType: "red")
             }
             navigationItem.rightBarButtonItem?.title = "Done"
         } else {
@@ -168,35 +171,7 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
         }
     }
     
-    func askForFunction() {
-        let alertController = UIAlertController(title: "pH Function", message: "Please enter the function:", preferredStyle: .alert)
-        alertController.view.tintColor = UIColor(red: 183/255, green: 127/255, blue: 140/255, alpha: 1)
-        
-        let confirmAction = UIAlertAction(title: "Confirm", style: .default) { _ in
-            if let fetchedFunction = alertController.textFields?[0].text, !fetchedFunction.isEmpty {
-                UserDefaults.standard.set(fetchedFunction, forKey: "pHFunction")
-                UserDefaults.standard.synchronize()
-                self.setResults()
-            }
-        }
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
-            self.getStats()
-        }
-        
-        alertController.addTextField { (textField) in
-            if let functionAlreadySet = UserDefaults.standard.string(forKey: "pHFunction") {
-                textField.text = functionAlreadySet
-            }
-        }
-        
-        alertController.addAction(confirmAction)
-        alertController.addAction(cancelAction)
-        
-        self.present(alertController, animated: true, completion: nil)
-    }
-    
-    func setResults() {
+    func setResults(forType type: String) {
         var colorIntensities = [(red: CGFloat, green: CGFloat, blue: CGFloat)]()
         reorderMarkers()
         
@@ -205,39 +180,45 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
             colorIntensities.append(red: colorsFound.red, green: colorsFound.green, blue: colorsFound.blue)
         }
         
-        let fetchedFunction = UserDefaults.standard.string(forKey: "pHFunction")!
-        
-        setValues(forFunction: fetchedFunction, withColorIntensities: colorIntensities)
+        if type == "red" {
+            if let fetchedFunction = UserDefaults.standard.string(forKey: "redpHFunction") {
+                setValues(forFunction: fetchedFunction, withColorIntensities: colorIntensities, forType: type)
+            }
+        } else {
+            if let fetchedFunction = UserDefaults.standard.string(forKey: "bluepHFunction") {
+                setValues(forFunction: fetchedFunction, withColorIntensities: colorIntensities, forType: type)
+            }
+        }
     }
     
-    func setValues(forFunction fetchedFunction: String, withColorIntensities colorIntensities: [(red: CGFloat, green: CGFloat, blue: CGFloat)]) {
+    func setValues(forFunction fetchedFunction: String, withColorIntensities colorIntensities: [(red: CGFloat, green: CGFloat, blue: CGFloat)], forType type: String) {
         totalWarnings = 0
         
-        function.setResult(forColors: [colorIntensities[0]], withIdeal: (idealMarker!.marker!.colorOfCenter().red, idealMarker!.type), forFunction: fetchedFunction)
+        function.setResult(forColors: [colorIntensities[0]], withIdeal: idealMarker!.colorOfCenter(), forType: type, forFunction: fetchedFunction)
         
         firstpHValue.text = String(describing: function.pH)
         setWarningIndicator(withValue: function.pH, forSensorNum: 1)
         firstSensorView.backgroundColor = UIColor(red: colorIntensities[0].red / 255, green: colorIntensities[0].green / 255, blue: colorIntensities[0].blue / 255, alpha: 1)
         
-        function.setResult(forColors: [colorIntensities[1]], withIdeal: (idealMarker!.marker!.colorOfCenter().red, idealMarker!.type), forFunction: fetchedFunction)
+        function.setResult(forColors: [colorIntensities[1]], withIdeal: idealMarker!.colorOfCenter(), forType: type, forFunction: fetchedFunction)
         
         secondpHValue.text = String(describing: function.pH)
         setWarningIndicator(withValue: function.pH, forSensorNum: 2)
         secondSensorView.backgroundColor = UIColor(red: colorIntensities[1].red / 255, green: colorIntensities[1].green / 255, blue: colorIntensities[1].blue / 255, alpha: 1)
         
-        function.setResult(forColors: [colorIntensities[2]], withIdeal: (idealMarker!.marker!.colorOfCenter().red, idealMarker!.type), forFunction: fetchedFunction)
+        function.setResult(forColors: [colorIntensities[2]], withIdeal: idealMarker!.colorOfCenter(), forType: type, forFunction: fetchedFunction)
         
         thirdpHValue.text = String(describing: function.pH)
         setWarningIndicator(withValue: function.pH, forSensorNum: 3)
         thirdSensorView.backgroundColor = UIColor(red: colorIntensities[2].red / 255, green: colorIntensities[2].green / 255, blue: colorIntensities[2].blue / 255, alpha: 1)
         
-        function.setResult(forColors: [colorIntensities[3]], withIdeal: (idealMarker!.marker!.colorOfCenter().red, idealMarker!.type), forFunction: fetchedFunction)
+        function.setResult(forColors: [colorIntensities[3]], withIdeal: idealMarker!.colorOfCenter(), forType: type, forFunction: fetchedFunction)
         
         fourthpHValue.text = String(describing: function.pH)
         setWarningIndicator(withValue: function.pH, forSensorNum: 4)
         fourthSensorView.backgroundColor = UIColor(red: colorIntensities[3].red / 255, green: colorIntensities[3].green / 255, blue: colorIntensities[3].blue / 255, alpha: 1)
         
-        function.setResult(forColors: colorIntensities, withIdeal: (idealMarker!.marker!.colorOfCenter().red, idealMarker!.type), forFunction: fetchedFunction)
+        function.setResult(forColors: colorIntensities, withIdeal: idealMarker!.colorOfCenter(), forType: type, forFunction: fetchedFunction)
         
         averageIntensity.text = String(describing: function.resultColor)
         if totalWarnings > 0 {
@@ -248,7 +229,17 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
     }
     
     func setWarningIndicator(withValue value: Double, forSensorNum sensor: Int) {
-        if value < 6.8 || value > 7.5 {
+        // FIXME: This if condition will fail a lot of times if given incorrect input
+        if value < Double(UserDefaults.standard.string(forKey: "maxpH")!)! && value > Double(UserDefaults.standard.string(forKey: "minpH")!)! {
+            switch sensor {
+            case 1: firstSensorWarningIndicator.image  = #imageLiteral(resourceName: "tick-1")
+            case 2: secondSensorWarningIndicator.image = #imageLiteral(resourceName: "tick-1")
+            case 3: thirdSensorWarningIndicator.image  = #imageLiteral(resourceName: "tick-1")
+            case 4: fourthSensorWarningIndicator.image = #imageLiteral(resourceName: "tick-1")
+            default: break
+            }
+            
+        } else {
             totalWarnings += 1
             switch sensor {
             case 1: firstSensorWarningIndicator.image  = #imageLiteral(resourceName: "warning-1")
@@ -257,15 +248,24 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
             case 4: fourthSensorWarningIndicator.image = #imageLiteral(resourceName: "warning-1")
             default: break
             }
-        } else {
-            switch sensor {
-            case 1: firstSensorWarningIndicator.image  = #imageLiteral(resourceName: "tick-1")
-            case 2: secondSensorWarningIndicator.image = #imageLiteral(resourceName: "tick-1")
-            case 3: thirdSensorWarningIndicator.image  = #imageLiteral(resourceName: "tick-1")
-            case 4: fourthSensorWarningIndicator.image = #imageLiteral(resourceName: "tick-1")
-            default: break
-            }
         }
+    }
+    
+    @IBAction func setRedValues(_ sender: UIButton) {
+        self.setResults(forType: "red")
+        UIView.animate(withDuration: 0.5) {
+            self.changeToRedButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 24.0)
+            self.changeToBlueButton.titleLabel?.font = UIFont.systemFont(ofSize: 21.0)
+        }
+    }
+    
+    @IBAction func setBlueValues(_ sender: UIButton) {
+        self.setResults(forType: "blue")
+        UIView.animate(withDuration: 0.5) {
+            self.changeToBlueButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 24.0)
+            self.changeToRedButton.titleLabel?.font = UIFont.systemFont(ofSize: 21.0)
+        }
+        
     }
     
     func reorderMarkers() {

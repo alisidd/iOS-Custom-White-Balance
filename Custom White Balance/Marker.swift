@@ -28,7 +28,7 @@ class Marker: UIView, UIGestureRecognizerDelegate {
     }
     
     func setup() {        
-        let circlePath = UIBezierPath(arcCenter: CGPoint(x: center.x + 100, y: center.y + 100), radius: 120, startAngle: 0, endAngle: CGFloat(2.0 * M_PI), clockwise: true)
+        let circlePath = UIBezierPath(arcCenter: CGPoint(x: center.x + 100, y: center.y + 100), radius: 120, startAngle: 0, endAngle: CGFloat(2.0 * .pi), clockwise: true)
         
         circlePath.move(to: CGPoint(x: circlePath.bounds.midX, y: circlePath.bounds.minY))
         circlePath.addLine(to: CGPoint(x: circlePath.bounds.midX, y: circlePath.bounds.maxY))

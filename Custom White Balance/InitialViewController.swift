@@ -23,6 +23,12 @@ class InitialViewController: UIViewController, UIImagePickerControllerDelegate, 
         super.viewWillAppear(animated)
         
         customizeNavigationBar()
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
     func setDelegate() {
@@ -58,6 +64,9 @@ class InitialViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if identifier == "Show Settings" {
+            performSegue(withIdentifier: "Show Settings", sender: nil)
+        }
         return false
     }
 
