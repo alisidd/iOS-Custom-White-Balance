@@ -158,7 +158,7 @@ Laboratory for innovations in Microengineering (LiME)</string>
                             </tableViewSection>
                             <tableViewSection headerTitle="Safety Levels" id="GAw-RX-iTk">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="120" id="egk-Oe-E94" customClass="pHRangeTableViewCell" customModule="iDerm">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="120" id="egk-Oe-E94">
                                         <rect key="frame" x="0.0" y="144" width="375" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="egk-Oe-E94" id="Gxc-B1-Bsy">
@@ -398,28 +398,28 @@ Laboratory for innovations in Microengineering (LiME)</string>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tick-1" translatesAutoresizingMaskIntoConstraints="NO" id="rIR-wC-qj3">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tick-2" translatesAutoresizingMaskIntoConstraints="NO" id="rIR-wC-qj3">
                                                 <rect key="frame" x="252" y="224" width="20" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="20" id="ibh-4o-dDb"/>
                                                     <constraint firstAttribute="height" constant="20" id="lUe-2F-wco"/>
                                                 </constraints>
                                             </imageView>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tick-1" translatesAutoresizingMaskIntoConstraints="NO" id="mjJ-IV-I5S">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tick-2" translatesAutoresizingMaskIntoConstraints="NO" id="mjJ-IV-I5S">
                                                 <rect key="frame" x="72" y="350" width="20" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="20" id="3HV-Sx-P6z"/>
                                                     <constraint firstAttribute="height" constant="20" id="qnW-Zu-OFi"/>
                                                 </constraints>
                                             </imageView>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tick-1" translatesAutoresizingMaskIntoConstraints="NO" id="CDh-81-Wbp">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tick-2" translatesAutoresizingMaskIntoConstraints="NO" id="CDh-81-Wbp">
                                                 <rect key="frame" x="252" y="350" width="20" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="20" id="dto-J3-LqC"/>
                                                     <constraint firstAttribute="width" constant="20" id="dvc-tg-sZC"/>
                                                 </constraints>
                                             </imageView>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tick-1" translatesAutoresizingMaskIntoConstraints="NO" id="2ue-Ue-Pom">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tick-2" translatesAutoresizingMaskIntoConstraints="NO" id="2ue-Ue-Pom">
                                                 <rect key="frame" x="72" y="224" width="20" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="20" id="Iqt-RD-ffJ"/>
@@ -443,7 +443,7 @@ Laboratory for innovations in Microengineering (LiME)</string>
                                                         <rect key="frame" x="142" y="0.0" width="42" height="38"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                         <state key="normal" title="Blue">
-                                                            <color key="titleColor" red="0.71764705880000002" green="0.49803921569999998" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="titleColor" red="0.34880021823031737" green="0.47229772438370138" blue="0.8561627538071066" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="setBlueValues:" destination="M86-06-EMQ" eventType="touchUpInside" id="av5-qo-oWn"/>
@@ -553,6 +553,6 @@ Laboratory for innovations in Microengineering (LiME)</string>
     <resources>
         <image name="background2" width="1080" height="1920"/>
         <image name="settings" width="1216" height="1213"/>
-        <image name="tick-1" width="600" height="556"/>
+        <image name="tick-2" width="3928" height="3520"/>
     </resources>
 </document>

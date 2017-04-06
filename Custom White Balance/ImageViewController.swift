@@ -232,10 +232,10 @@ class ImageViewController: UIViewController, UIScrollViewDelegate, UIActionSheet
         // FIXME: This if condition will fail a lot of times if given incorrect input
         if value < Double(UserDefaults.standard.string(forKey: "maxpH")!)! && value > Double(UserDefaults.standard.string(forKey: "minpH")!)! {
             switch sensor {
-            case 1: firstSensorWarningIndicator.image  = #imageLiteral(resourceName: "tick-1")
-            case 2: secondSensorWarningIndicator.image = #imageLiteral(resourceName: "tick-1")
-            case 3: thirdSensorWarningIndicator.image  = #imageLiteral(resourceName: "tick-1")
-            case 4: fourthSensorWarningIndicator.image = #imageLiteral(resourceName: "tick-1")
+            case 1: firstSensorWarningIndicator.image  = #imageLiteral(resourceName: "tick-2")
+            case 2: secondSensorWarningIndicator.image = #imageLiteral(resourceName: "tick-2")
+            case 3: thirdSensorWarningIndicator.image  = #imageLiteral(resourceName: "tick-2")
+            case 4: fourthSensorWarningIndicator.image = #imageLiteral(resourceName: "tick-2")
             default: break
             }
             

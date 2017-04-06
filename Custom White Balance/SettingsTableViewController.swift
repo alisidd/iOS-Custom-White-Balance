@@ -18,7 +18,6 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         customizeNavigationBar()
-        customizeFields()
         setDelegates()
         populateFields()
     }
@@ -29,11 +28,6 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate {
         navigationController?.navigationBar.barTintColor = UIColor(red: 183/255, green: 127/255, blue: 140/255, alpha: 1)
         navigationController?.navigationBar.tintColor = .white
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-    }
-    
-    func customizeFields() {
-        minpHField.keyboardType = .decimalPad
-        maxpHField.keyboardType = .decimalPad
     }
     
     func setDelegates() {
